@@ -202,8 +202,9 @@ body.at-title{padding-bottom:0;}
  width:38px;height:38px;border-radius:10px;font-size:20px;line-height:1;cursor:pointer;
  display:flex;align-items:center;justify-content:center;flex:none;}
 .bk:hover{border-color:var(--amber-dim);color:var(--amber);}
-.scr-title{min-height:88vh;display:none;place-items:center;}
-.scr-title.on{display:grid;}
+.scr-title{min-height:92vh;display:none;}
+.scr-title.on{display:flex;flex-direction:column;align-items:center;justify-content:space-between;
+ padding:calc(16px + env(safe-area-inset-top)) 14px calc(12px + env(safe-area-inset-bottom));}
 .title-in{text-align:center;padding:20px 16px;max-width:520px;}
 .t-kicker{font-size:7.5px;color:var(--dim);letter-spacing:1.6px;line-height:2;opacity:.85;}
 .t-name{font-size:clamp(26px,9vw,52px);color:var(--paper);margin:18px 0 6px;
@@ -336,6 +337,34 @@ textarea{font-size:16px;}
 @media(prefers-reduced-motion:reduce){
  .screen,.card.swL,.card.swR,.btn,button{animation:none!important;transition:none!important;}
 }
+
+/* ═══ título: countdown + attract ═══ */
+#t-cd{font-family:'Press Start 2P',ui-monospace,monospace;text-align:center;color:var(--amber);
+ letter-spacing:1px;line-height:1.7;}
+#t-cd b{display:block;font-size:clamp(15px,4.6vw,21px);font-weight:400;
+ text-shadow:0 0 14px rgba(255,160,40,.55),0 0 34px rgba(255,160,40,.25);}
+#t-cd span{display:block;font-size:8px;color:var(--dim);letter-spacing:2px;margin-top:8px;}
+#t-attract{width:100%;max-width:460px;}
+.t-hs{display:flex;justify-content:center;gap:26px;margin-bottom:26px;font-family:'Press Start 2P',ui-monospace,monospace;}
+.t-hs div{text-align:center;}
+.t-hs b{display:block;font-size:13px;color:var(--paper);font-weight:400;}
+.t-hs span{display:block;font-size:7px;color:var(--dimmer);letter-spacing:2px;margin-top:6px;}
+.t-route-wrap{position:relative;margin:0 6px;padding-top:52px;}
+#t-sprite{position:absolute;bottom:14px;width:44px;height:56px;transform:translateX(-50%);
+ transition:left 1s linear;pointer-events:none;}
+#t-sprite svg{width:100%;height:100%;}
+@media(prefers-reduced-motion:no-preference){
+ #t-sprite{animation:tBob 1.7s ease-in-out infinite;}
+ @keyframes tBob{50%{transform:translateX(-50%) translateY(-3px);}}
+}
+.t-bar{display:flex;height:7px;border-radius:4px;overflow:hidden;border:1px solid var(--line2);}
+.t-bar i{display:block;height:100%;opacity:.5;}
+.t-ends{display:flex;justify-content:space-between;font-size:8px;color:var(--dimmer);
+ letter-spacing:2px;margin-top:7px;font-family:'Press Start 2P',ui-monospace,monospace;}
+#t-fly{position:absolute;top:6px;left:0;font-size:15px;opacity:0;pointer-events:none;}
+#t-fly.go{animation:tFly 6s linear forwards;}
+@keyframes tFly{0%{opacity:.65;transform:translateX(-24px);}100%{opacity:.65;transform:translateX(calc(100vw - 24px));}}
+@media(prefers-reduced-motion:reduce){#t-fly.go{animation:none;opacity:0;}}
 </style>
 <style>
 :root{--o:#E8500F;--acc:#E8500F;--acctx:#FFFFFF;--c:#F0E9D8;--d:#0D0D0F;--p:#14181D;
@@ -616,6 +645,7 @@ footer{margin-top:28px;color:var(--g);font-size:9.5px;border-top:3px solid var(-
 
 
 <section class="screen scr-title" id="scr-title">
+ <div id="t-cd" aria-live="off"><b>—</b><span>&nbsp;</span></div>
  <div class="title-in">
   <div class="t-kicker px">ARCADE DE RUTA · D0 + 89 NIVELES · 5 MUNDOS · 1 PROYECTO</div>
   <h1 class="t-name px">VIAJE 2026</h1>
@@ -627,6 +657,19 @@ footer{margin-top:28px;color:var(--g);font-size:9.5px;border-top:3px solid var(-
    <button class="t-link" data-go="datos">DATOS</button>
    <button class="t-link" data-go="mapas">MAPAS</button>
    <button class="t-link" id="t-help">CÓMO SE JUEGA</button>
+  </div>
+ </div>
+ <div id="t-attract">
+  <div class="t-hs">
+   <div><b id="t-xp">0</b><span>XP</span></div>
+   <div><b id="t-ret">0/89</b><span>RETRATOS</span></div>
+   <div><b id="t-inv">171</b><span>INVADERS</span></div>
+  </div>
+  <div class="t-route-wrap">
+   <span id="t-fly">👾</span>
+   <div id="t-sprite"></div>
+   <div class="t-bar" id="t-bar"></div>
+   <div class="t-ends"><span>LA PAZ</span><span>LA PAZ</span></div>
   </div>
  </div>
 </section>
@@ -1401,7 +1444,7 @@ footer{margin-top:28px;color:var(--g);font-size:9.5px;border-top:3px solid var(-
 <footer>
  <b>EL PROYECTO «DE ALGÚN LADO»:</b> un retrato por día a un desconocido + su respuesta a «¿de dónde viene tu familia?». 89 personas en 9 países; las respuestas son la capa editorial. En Arlington el mismo protocolo llega a casa (hilo diáspora → tu puente a WPP/POY documental). El hilo E·CO/26 (Guamán Poma, tiempo) sigue aparte: es el proyecto de QHIPA. Para POY Latam, Leica Oskar Barnack, festivales; World Press premia años — lo sabés.<br><br>
  <b>REGLA FIJA:</b> cuerpo entero · vertical · la persona en SU lugar · pies dentro del cuadro · a 3-4 m · máx 3 tomas · SIEMPRE con permiso · nombre y respuesta a la libreta · cámara analógica con el rollo que haya — cada película, un acento. Racha de retratos consecutivos multiplica XP: ×1.2 (3+), ×1.35 (5+), ×1.5 (10+, tope). 🛡 Tres SEGUROS por viaje reparan un día roto cada uno — un día enfermo no te funde la racha.<br><br>
- Los encuadres 📷 son curaduría mía — la regla completa vive comentada (EDIT_LUIS) en el código fuente: abrí el HTML y metéle tu ojo. Fuente embebida: funciona 100% offline (ferry, Roya, aviones). Cada mundo tiene su paleta. UN JUEGO DE LÚCIDO PARA LUIS · v10.0 «ENTREGA» · el cronograma serio vive en el PDF y en el mapa v5.
+ Los encuadres 📷 son curaduría mía — la regla completa vive comentada (EDIT_LUIS) en el código fuente: abrí el HTML y metéle tu ojo. Fuente embebida: funciona 100% offline (ferry, Roya, aviones). Cada mundo tiene su paleta. UN JUEGO DE LÚCIDO PARA LUIS · v10.1 «ENTREGA» · el cronograma serio vive en el PDF y en el mapa v5.
 </footer>
 
 <div id="toasts" aria-live="polite"></div>
@@ -1497,7 +1540,7 @@ footer{margin-top:28px;color:var(--g);font-size:9.5px;border-top:3px solid var(-
 </div>
 
 <script>
-const VERSION='v10.0';
+const VERSION='v10.1';
 /* EDIT_LUIS — REGLA DEL RETRATO (protocolo fijo: no cambiarlo a mitad de la serie)
    cuerpo entero · VERTICAL · la persona en SU lugar · pies dentro del cuadro
    a 3-4 m · máx 3 tomas · SIEMPRE con permiso
@@ -1732,7 +1775,9 @@ function repaintChar(){
  const hc=$("hudchar");if(hc)hc.innerHTML=spriteSVG(equip);
  document.querySelectorAll(".here .bob").forEach(b=>{b.innerHTML='<g transform="translate(-13,-34) scale(0.26)">'+spriteSVG(equip)+'</g>';});
  const n=Object.values(equip).filter(Boolean).length;
- $("who-fit").textContent=n?("EQUIPADO ×"+n):"SIN EQUIPO EXTRA";autosave();}
+ $("who-fit").textContent=n?("EQUIPADO ×"+n):"SIN EQUIPO EXTRA";
+ const ts=$("t-sprite");if(ts)ts.innerHTML='<svg viewBox="0 0 100 130" aria-hidden="true">'+spriteSVG(equip)+"</svg>";
+ autosave();}
 // ---- grid ----
 const wbox=$("worlds");
 TL.forEach(w=>{
@@ -2014,6 +2059,7 @@ function recount(){
  renderLocker(bud);
  updDayBadge();
  {const dc=$("d0-countdown"); if(dc)dc.style.display=(cur===0)?"block":"none";}
+ if($("t-xp")){$("t-xp").textContent=$("s-xp").textContent;$("t-ret").textContent=$("fcount").textContent;$("t-inv").textContent=$("s-inv").textContent;}
  autosave();}
 
 function itemIcon(iid){
@@ -2244,13 +2290,16 @@ document.addEventListener("keydown",e=>{
 // countdown
 const t0=new Date(2026,7,17,0,0,0);
 function cd(){const now=new Date();let ms=t0-now;const box=$("cd");
+ const tcd=$("t-cd");
+ const W=(a,b)=>{const html="<b>"+a+"</b><span>"+b+"</span>";box.innerHTML=html;if(tcd)tcd.innerHTML=html;
+  if(window.updRoute)updRoute(now);};
  if(ms<=0){const d2=new Date(2026,10,13,6,25,0);
   if(now<d2){const d=Math.floor((now-t0)/864e5)+1;
-   box.innerHTML="<b>NOW PLAYING</b><span>NIVEL "+d+" DE 89 · D0 COMPLETADO</span>";return;}
-  box.innerHTML="<b>GAME COMPLETE</b><span>88 noches · 9 países</span>";return;}
+   W("NOW PLAYING","NIVEL "+d+" DE 89 · "+lvOf(Math.min(DAY_MAX,Math.max(1,d))).lug.toUpperCase());return;}
+  W("GAME COMPLETE","88 noches · 9 países");return;}
  const d=Math.floor(ms/864e5);ms-=d*864e5;const h=Math.floor(ms/36e5);ms-=h*36e5;
  const m=Math.floor(ms/6e4);const s=Math.floor((ms-m*6e4)/1e3);
- box.innerHTML="<b>"+d+"d "+h+"h "+m+"m "+s+"s</b><span>GAME STARTS · lun 17 ago</span>";}
+ W(d+"d "+h+"h "+m+"m "+s+"s","GAME STARTS · LUN 17 AGO 05:10");}
 setInterval(()=>{cd();cdD0();},1000);cd();cdD0();
 (function buildPrint(){
  const G={"proyecto":"[P]","personal":"[*]","invader":"[I]","logistica":"[.]","fu":"[F]","qhipa":"[Q]","viaje":"[>]"};
@@ -2284,6 +2333,24 @@ $("c-perT").textContent=TOT_PER;
   card.classList.remove("swL","swR");void card.offsetWidth;
   card.classList.add(dir>0?"swL":"swR");
   go(nx,true,true,"step");},{passive:true});
+})();
+/* ═══ attract del título: barra de ruta por mundos + marcador ═══ */
+(function(){
+ const bar=$("t-bar");if(!bar)return;
+ let total=0;TL.forEach(w=>total+=w.d);
+ TL.forEach((w,i)=>{const seg=document.createElement("i");
+  seg.style.width=(w.d/total*100)+"%";seg.style.background=WPAL[i][1];bar.appendChild(seg);});
+ const t2=new Date(2026,10,13,6,25,0);
+ window.updRoute=function(now){const sp=$("t-sprite");if(!sp)return;
+  let pct=(now-t0)/(t2-t0);pct=Math.max(0,Math.min(1,pct));
+  sp.style.left=(3+pct*94)+"%";};
+ updRoute(new Date());
+ /* flyby ocasional del invasor, solo con el título visible */
+ const fly=$("t-fly");
+ if(fly&&(!window.matchMedia||!window.matchMedia("(prefers-reduced-motion: reduce)").matches)){
+  setInterval(()=>{const t=$("scr-title");
+   if(!t||!t.classList.contains("on"))return;
+   fly.classList.remove("go");void fly.offsetWidth;fly.classList.add("go");},19000);}
 })();
 window.addEventListener("pagehide",()=>{try{if(_asT){clearTimeout(_asT);_asT=null;}localStorage.setItem(LSKEY,snapshot());}catch(e){}});
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden"){try{if(_asT){clearTimeout(_asT);_asT=null;}localStorage.setItem(LSKEY,snapshot());}catch(e){}}});
