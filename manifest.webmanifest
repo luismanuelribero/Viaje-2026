@@ -1,0 +1,16 @@
+{
+  "name": "VIAJE 2026 — EL JUEGO",
+  "short_name": "VIAJE 26",
+  "description": "89 días, 9 países, 89 retratos. El juego de Luis.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#16120D",
+  "theme_color": "#16120D",
+  "lang": "es",
+  "icons": [
+    { "src": "icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
