@@ -76,7 +76,9 @@ html,body{background:
 /* ---------- botonera ---------- */
 .ctl{display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center;
  background:transparent; border:0; padding:4px 2px;}
-.ctl-nav,.ctl-tools{display:flex; gap:8px; flex-wrap:wrap;}
+.ctl-nav,.ctl-tools{display:flex; gap:7px; flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;}
+.ctl-tools::-webkit-scrollbar{display:none;}
+.ctl-tools>.btn{flex:0 0 auto;}
 .btn{font-family:ui-monospace,Menlo,monospace; font-size:12.5px; letter-spacing:.8px;
  background:var(--panel2); color:var(--paper); border:1px solid var(--line2);
  border-radius:10px; padding:10px 14px; min-height:40px; cursor:pointer;
@@ -176,7 +178,9 @@ footer,.foot{color:var(--dimmer); font-size:11px;}
 /* v9.3 barra de acciones unificada */
 .ctl{flex-direction:column; align-items:stretch; gap:9px;
  background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:11px 12px;}
-.ctl-nav,.ctl-tools,.ctl-data{display:flex; gap:8px; flex-wrap:wrap;}
+.ctl-nav,.ctl-tools,.ctl-data{display:flex; gap:7px; flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;}
+.ctl-data::-webkit-scrollbar{display:none;}
+.ctl-data>.btn{flex:0 0 auto; white-space:nowrap;}
 .ctl-nav{justify-content:flex-start;}
 .ctl-tools,.ctl-data{justify-content:flex-start;}
 .ctl-data{padding-top:9px; border-top:1px dashed var(--line2);}
@@ -185,7 +189,7 @@ footer,.foot{color:var(--dimmer); font-size:11px;}
 .ctl-note{font-size:11px; color:var(--dimmer); line-height:1.4; padding-top:1px;}
 @media(min-width:560px){
  .ctl{flex-direction:row; flex-wrap:wrap; align-items:center;}
- .ctl-data{border-top:0; border-left:1px dashed var(--line2); padding-top:0; padding-left:12px; margin-left:auto;}
+ .ctl-data{border-top:1px dashed var(--line2); border-left:0; padding-top:9px; padding-left:0; margin-left:0; flex-basis:100%;}
  .ctl-note{flex-basis:100%; border-top:1px dashed var(--line); padding-top:8px; margin-top:2px;}
 }
 
@@ -365,6 +369,120 @@ textarea{font-size:16px;}
 #t-fly.go{animation:tFly 6s linear forwards;}
 @keyframes tFly{0%{opacity:.65;transform:translateX(-24px);}100%{opacity:.65;transform:translateX(calc(100vw - 24px));}}
 @media(prefers-reduced-motion:reduce){#t-fly.go{animation:none;opacity:0;}}
+
+/* ═══ cuarto oscuro ═══ */
+.rollbox{max-width:440px;}
+.rolab{font-size:8px;letter-spacing:2px;color:var(--dimmer);margin:10px 0 5px;font-family:'Press Start 2P',monospace;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{font-family:ui-monospace,Menlo,monospace;font-size:12px;padding:7px 10px;min-height:34px;
+ background:#191410;color:var(--dim);border:1px solid var(--line2);border-radius:8px;cursor:pointer;}
+.chip.on{background:#2E2213;color:var(--amber);border-color:var(--amber-dim);font-weight:700;}
+.rtag{font-size:12px;color:var(--dim);display:flex;align-items:center;gap:6px;}
+.rtag input{width:18px;height:18px;accent-color:var(--amber);}
+.rolist{max-height:170px;overflow:auto;margin-top:12px;border-top:1px solid var(--line);}
+.rolist div{display:flex;gap:8px;padding:6px 2px;border-bottom:1px dashed var(--line);
+ font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--dim);}
+.rolist b{color:var(--paper);min-width:26px;}
+.rolist .rst{color:var(--amber);}
+#roll-cur{color:var(--amber);}
+.chips.mini .chip{font-size:11px;padding:5px 8px;min-height:30px;}
+#cap-expo{margin:4px 0 10px;}
+
+/* ═══ guía del día · racha · perfecto · HOY ═══ */
+.mapbox{content-visibility:auto;contain-intrinsic-size:340px;}
+#streak{margin:8px 0 2px;font-family:'Press Start 2P',monospace;font-size:9px;color:var(--amber);letter-spacing:1px;}
+#streak .seg{color:var(--dim);margin-left:8px;}
+.dayguide{margin:10px 0 4px;border:1px solid var(--line2);border-radius:10px;background:#171310;}
+.dg-t{display:flex;justify-content:space-between;align-items:center;width:100%;background:none;border:0;
+ color:var(--dim);font-size:9px;letter-spacing:2px;padding:11px 12px;cursor:pointer;min-height:40px;}
+.dg-t[aria-expanded="true"]{color:var(--amber);}
+.dg-body{padding:0 12px 12px;}
+#dg-list{margin:0;padding-left:18px;color:var(--c);font-size:13px;line-height:1.55;}
+#dg-list li{margin-bottom:9px;}
+.dg-regla{margin-top:10px;padding:9px 10px;border-left:3px solid var(--amber-dim);background:#1B1611;
+ font-size:12px;color:var(--dim);font-style:italic;}
+.dg-regla b{color:var(--amber);font-style:normal;font-size:8px;font-family:'Press Start 2P',monospace;
+ display:block;margin-bottom:5px;letter-spacing:1px;}
+#dg-frases{margin-top:10px;}
+.dg-fr{margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--c);}
+.dg-fr div{padding:5px 0;border-bottom:1px dashed var(--line);}
+.dg-fr i{color:var(--dimmer);font-style:normal;font-size:11px;display:block;}
+.tile.perfect{box-shadow:0 0 0 2px var(--amber),0 0 10px rgba(255,160,40,.4);}
+#hoy-pill{position:fixed;right:14px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:900;
+ display:none;background:var(--amber);color:#1A130B;border:0;border-radius:999px;
+ font-family:'Press Start 2P',monospace;font-size:9px;padding:12px 16px;letter-spacing:1px;
+ box-shadow:0 4px 18px rgba(0,0,0,.5);cursor:pointer;}
+#toroll.rwarn{color:var(--amber);border-color:var(--amber-dim);}
+#toroll.rover{color:#E85050;border-color:#8A3030;}
+#worldscr{position:fixed;inset:0;z-index:9996;background:rgba(10,8,5,.94);display:flex;align-items:center;justify-content:center;padding:16px;}
+#worldscr .wbx{max-width:400px;width:100%;border:3px solid var(--amber);background:#171310;color:var(--paper);
+ padding:22px 16px;text-align:center;}
+#worldscr h2{font-family:'Press Start 2P',monospace;font-size:14px;color:var(--amber);margin:6px 0 2px;letter-spacing:1px;}
+#worldscr .ws{font-size:8px;letter-spacing:2px;color:var(--dimmer);font-family:'Press Start 2P',monospace;}
+#worldscr .wg{display:flex;justify-content:center;gap:22px;margin:16px 0;}
+#worldscr .wg b{display:block;font-family:'Press Start 2P',monospace;font-size:13px;color:var(--amber);font-weight:400;}
+#worldscr .wg i{font-style:normal;font-size:8px;letter-spacing:1.5px;color:var(--dimmer);font-family:'Press Start 2P',monospace;display:block;margin-top:5px;}
+#worldscr .fbtn{margin-top:6px;border:2px solid var(--amber);background:none;color:var(--amber);
+ padding:10px 16px;font:inherit;font-size:12px;letter-spacing:2px;cursor:pointer;}
+
+/* ═══ micro-detalles ═══ */
+.lk.locked{filter:grayscale(1);opacity:.42;}
+.lk.locked .lknm::after{content:" 🔒";font-size:10px;}
+.lk.unlocked{border-color:var(--amber-dim);}
+.lk.unlocked .lknm{color:var(--amber);}
+.lk.equipped{border-color:var(--amber);background:#241B10;box-shadow:0 0 8px rgba(255,160,40,.25);}
+.tile.today{outline:2px solid var(--paper);outline-offset:1px;animation:tdP 2.2s ease-in-out infinite;}
+@keyframes tdP{50%{outline-color:rgba(242,235,220,.25);}}
+.cell.perf{border-color:var(--amber);}
+.stamp.pop{animation:stP .6s ease;}
+@keyframes stP{0%{transform:scale(.6) rotate(-8deg);}60%{transform:scale(1.15) rotate(3deg);}100%{transform:none;}}
+.toast.ok{border-left:4px solid #7BC96F;}
+.toast.err{border-left:4px solid #E85050;}
+button:disabled{opacity:.32;pointer-events:none;}
+.wdone{font-size:8px;color:var(--dimmer);margin-left:6px;}
+.wdone.full{color:var(--amber);}
+.bsm.ok{color:#7BC96F;}
+.bsm.warn{color:var(--amber);}
+.bsm.err{color:#E85050;}
+@media(prefers-reduced-motion:reduce){.tile.today,.stamp.pop{animation:none!important;}}
+
+/* ═══ cuarto oscuro v2 ═══ */
+.rollbox{max-width:440px;}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.rhead-l{font-size:15px;color:var(--paper);}
+.rhead-l b{color:var(--amber);font-family:ui-monospace,Menlo,monospace;}
+.rempty{padding:4px 0;}
+.rempty input{width:100%;margin:6px 0 4px;}
+.btn.big{width:100%;padding:13px;font-size:13px;letter-spacing:1px;margin-top:8px;}
+.btn.big.star{background:#241B10;border-color:var(--amber-dim);color:var(--amber);}
+.rmeter{display:flex;align-items:baseline;gap:8px;font-family:'Press Start 2P',monospace;margin:2px 0 12px;}
+.rmeter span#rm-count{font-size:20px;color:var(--amber);}
+.rmeter i{font-size:8px;color:var(--dimmer);font-style:normal;}
+.autohint{font-size:8px;color:var(--dimmer);font-family:ui-monospace,Menlo,monospace;letter-spacing:0;text-transform:none;}
+#roll-shoot input{width:100%;margin:6px 0 2px;}
+#rs-gps{width:100%;margin:8px 0 2px;justify-content:center;}
+#rs-gps.has,#cap-gps.has{color:#7BC96F;border-color:#3a5a35;}
+.rhint{font-size:11px;color:var(--dimmer);line-height:1.4;margin:6px 0;}
+.rexpo{display:flex;align-items:center;gap:14px;padding:11px 12px;border:1px solid var(--line2);
+ border-radius:10px;background:#171310;cursor:pointer;}
+.rexpo .rex{display:flex;flex-direction:column;line-height:1.2;}
+.rexpo .rex i{font-size:8px;color:var(--dimmer);font-style:normal;letter-spacing:1px;}
+.rexpo .rex b{font-size:17px;color:var(--paper);font-family:ui-monospace,Menlo,monospace;}
+.rexpo .rex-hint{margin-left:auto;font-size:9px;color:var(--amber);letter-spacing:1px;}
+.rexpo-panel{padding:8px 2px 2px;}
+.rshoot-row{display:flex;gap:8px;}
+.rshoot-row .btn{margin-top:10px;}
+.rolist{max-height:150px;overflow:auto;margin:12px 0 4px;border-top:1px solid var(--line);}
+.rgroup{font-family:'Press Start 2P',monospace;font-size:7px;color:var(--dimmer);
+ letter-spacing:1px;padding:8px 2px 4px;position:sticky;top:0;background:var(--panel);}
+.rolist .ri{display:flex;gap:8px;padding:5px 2px;border-bottom:1px dashed var(--line);
+ font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--dim);align-items:center;}
+.rolist .ri b{color:var(--paper);min-width:24px;}
+.rolist .ri .rst{color:var(--amber);}
+.rolist .ri .rx{color:var(--dimmer);margin-left:auto;font-size:11px;}
+.rfoot{display:flex;gap:7px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;}
+.rfoot::-webkit-scrollbar{display:none;}
+.rfoot>.btn{flex:0 0 auto;white-space:nowrap;}
 </style>
 <style>
 :root{--o:#E8500F;--acc:#E8500F;--acctx:#FFFFFF;--c:#F0E9D8;--d:#0D0D0F;--p:#14181D;
@@ -680,7 +798,7 @@ footer{margin-top:28px;color:var(--g);font-size:9.5px;border-top:3px solid var(-
 
 <div class="sheet">
  <h3 class="px">HOJA DE CONTACTOS</h3>
- <div class="sub">Los 89 fotogramas del proyecto, uno por día. Cuando esta hoja esté llena, la serie existe. Tocá una celda para ir al nivel.</div>
+ <div class="sub">Un fotograma por día. Llena, la serie existe.</div>
  <div class="shgrid" id="shgrid"></div>
 </div>
 
@@ -694,13 +812,14 @@ footer{margin-top:28px;color:var(--g);font-size:9.5px;border-top:3px solid var(-
  <button class="btn" id="now" aria-label="Ir al día de hoy">AHORA</button>
  </div>
  <div class="ctl-tools">
- <button class="btn" id="demo" aria-label="Ver demo">DEMO</button>
  <button class="btn" id="tolocker" aria-label="Abrir locker de equipo">🎒</button>
  <button class="btn" id="tomaleta" aria-label="Abrir lista de equipaje">🧳</button>
  <button class="btn" id="todia0" aria-label="Abrir Día 0: operación del viaje">📋</button>
+  <button class="btn" id="toroll" aria-label="Cuarto oscuro: registro de rollos">📼</button>
  <button class="btn small" id="sfx" aria-label="Activar o silenciar sonido">🔊</button>
  <button class="btn small" id="crt" aria-label="Efecto de pantalla CRT">CRT</button>
  <button class="btn small" id="tohelp" aria-label="Cómo se juega">?</button>
+ <button class="btn small ghost" id="demo" aria-label="Ver demo">DEMO</button>
  </div>
  
  
@@ -717,11 +836,21 @@ footer{margin-top:28px;color:var(--g);font-size:9.5px;border-top:3px solid var(-
  <div id="lv-nn">—</div>
  <div id="d0-countdown" class="d0cd" style="display:none"></div>
  <div id="lv-nota">—</div>
+  <div id="streak" style="display:none"></div>
+  <div class="dayguide" id="dayguide">
+   <button class="dg-t px" id="dg-toggle" aria-expanded="false">📖 GUÍA DEL DÍA <span id="dg-arrow">▾</span></button>
+   <div class="dg-body" id="dg-body" style="display:none">
+    <ol id="dg-list"></ol>
+    <div class="dg-regla" id="dg-regla"></div>
+    <button class="btn small" id="dg-frases" style="display:none">🗣 FRASES DEL PAÍS</button>
+    <div class="dg-fr" id="dg-fr" style="display:none"></div>
+   </div>
+  </div>
  <div class="budget" id="budget">
    <div class="brow">
      <span class="cap">TECHO <b id="bud-cap">$35</b></span>
      <span class="cap">GASTADO <b id="bud-sum">$0</b></span>
-     <span class="lbl" id="bud-state">día abierto · el techo INCLUYE cama+comida+transporte (no vuelos)</span>
+     <span class="lbl" id="bud-state">día abierto · techo: cama+comida+transporte, sin vuelos</span>
      <button id="bud-close">FINALIZAR DÍA</button>
    </div>
    <div class="brow" id="bud-form">
@@ -768,13 +897,13 @@ footer{margin-top:28px;color:var(--g);font-size:9.5px;border-top:3px solid var(-
 
 <div class="pass">
  <h3 class="px">PASAPORTE</h3>
- <div class="sub">Un sello por país: se estampa cuando completás tu primera misión (o cerrás presupuesto) en su territorio.</div>
+ <div class="sub">Se estampa con tu primera misión (o cierre de día) en cada país.</div>
  <div class="stamps" id="stamps"></div>
 </div>
 
 <div class="locker" id="locker">
  <h3 class="px">🎒 EL LOCKER</h3>
- <div class="sub">Cada día cerrado DENTRO del techo (cama+comida+transporte, datos reales 2026) suma 1. Al número, desbloqueás la prenda o cámara — tu sprite cambia acá y en el mapa. No gastar de más ES progreso.</div>
+ <div class="sub">Cada día cerrado bajo techo suma 1 y desbloquea prendas — tu sprite cambia. No gastar de más ES progreso.</div>
  <div class="lkgrid" id="lkgrid"></div>
 </div>
 
@@ -783,7 +912,7 @@ footer{margin-top:28px;color:var(--g);font-size:9.5px;border-top:3px solid var(-
  <div class="scr-head"><button class="bk" data-back aria-label="Volver">‹</button><h2 class="px">DATOS</h2></div>
 <div class="libro">
  <h3 class="px">📒 LIBRO DE GASTOS</h3>
- <div class="sub"><span id="lb-head">—</span> · pasajes y Moby ya pagados vienen horneados (marcados PRE-VIAJE en su día, no tocan techos) · la partida se <b>autoguarda en este navegador</b> — exportá CSV + JSON cada noche como respaldo.</div>
+ <div class="sub"><span id="lb-head">—</span> · lo ya pagado viene marcado PRE-VIAJE en su día: no toca techos<b>autoguarda en este navegador</b> — exportá CSV + JSON cada noche como respaldo.</div>
  <div id="lb-rows"><div class="lb-empty">— todavía sin días cerrados —</div></div>
 
 
@@ -794,10 +923,11 @@ footer{margin-top:28px;color:var(--g);font-size:9.5px;border-top:3px solid var(-
   <button class="btn small" id="lb-save">GUARDAR</button>
   <button class="btn small" id="lb-load">CARGAR</button>
   <button class="btn small" id="lb-csv">GASTOS ↓</button>
-  <button class="btn small" id="lb-caps">CAPTIONS ↓</button>\n  <button class="btn small" id="lb-reset">RESET</button>
+  <button class="btn small" id="lb-caps">CAPTIONS ↓</button>
+  <button class="btn small" id="lb-reset">RESET</button>
   <input type="file" id="lb-file" aria-label="Cargar partida desde archivo" accept="application/json,.json" style="display:none">
  </div>
-<div class="ctl-note">AUTOSAVE: la partida se guarda sola en este navegador (y al bloquear el teléfono). GUARDAR baja un .json portable — hacelo cada noche igual: es tu respaldo si cambiás de navegador o se borran los datos. RESET arranca de cero.</div>
+<div class="ctl-note">Autosave en este navegador. GUARDAR = respaldo .json (bajalo cada noche). RESET = de cero.</div>
 
 </section>
 <section class="screen" id="scr-mapas">
@@ -1442,9 +1572,9 @@ footer{margin-top:28px;color:var(--g);font-size:9.5px;border-top:3px solid var(-
 </div>
 
 <footer>
- <b>EL PROYECTO «DE ALGÚN LADO»:</b> un retrato por día a un desconocido + su respuesta a «¿de dónde viene tu familia?». 89 personas en 9 países; las respuestas son la capa editorial. En Arlington el mismo protocolo llega a casa (hilo diáspora → tu puente a WPP/POY documental). El hilo E·CO/26 (Guamán Poma, tiempo) sigue aparte: es el proyecto de QHIPA. Para POY Latam, Leica Oskar Barnack, festivales; World Press premia años — lo sabés.<br><br>
- <b>REGLA FIJA:</b> cuerpo entero · vertical · la persona en SU lugar · pies dentro del cuadro · a 3-4 m · máx 3 tomas · SIEMPRE con permiso · nombre y respuesta a la libreta · cámara analógica con el rollo que haya — cada película, un acento. Racha de retratos consecutivos multiplica XP: ×1.2 (3+), ×1.35 (5+), ×1.5 (10+, tope). 🛡 Tres SEGUROS por viaje reparan un día roto cada uno — un día enfermo no te funde la racha.<br><br>
- Los encuadres 📷 son curaduría mía — la regla completa vive comentada (EDIT_LUIS) en el código fuente: abrí el HTML y metéle tu ojo. Fuente embebida: funciona 100% offline (ferry, Roya, aviones). Cada mundo tiene su paleta. UN JUEGO DE LÚCIDO PARA LUIS · v10.1 «ENTREGA» · el cronograma serio vive en el PDF y en el mapa v5.
+ <b>EL PROYECTO «DE ALGÚN LADO»:</b> un desconocido por día + su respuesta a «¿de dónde viene tu familia?». 89 personas, 9 países. En Arlington la pregunta llega a casa.<br><br>
+ <b>REGLA FIJA:</b> cuerpo entero · vertical · en SU lugar · pies en cuadro · 3-4 m · máx 3 tomas · SIEMPRE con permiso · nombre y respuesta a la libreta. Cada película, un acento.<br>🔥 racha ×1.2/×1.35/×1.5 · 3 🛡 absorben huecos.<br><br>
+ Regla completa: EDIT_LUIS en el código. 100% offline. UN JUEGO DE LÚCIDO PARA LUIS · v11.2 «RETRATO COMPLETO»
 </footer>
 
 <div id="toasts" aria-live="polite"></div>
@@ -1452,10 +1582,18 @@ footer{margin-top:28px;color:var(--g);font-size:9.5px;border-top:3px solid var(-
  <div class="capbox">
   <div class="caphead px">📓 RETRATO <span id="cap-day"></span> — CAPTURÁ EL DATO AHORA</div>
   <div class="capsub" id="cap-hunt"></div>
-  <input id="cap-n" type="text" placeholder="Nombre de la persona" maxlength="60" autocomplete="off">
+  <div class="capsub" id="cap-roll" style="display:none;color:var(--amber)"></div>
+   <button class="btn small ghost" id="cap-gps" style="width:100%;justify-content:center;margin:2px 0 8px">📍 <span id="cap-gps-t">agregar ubicación GPS</span></button>
+   <div id="cap-expo" style="display:none">
+    <div class="rolab">📼 <span id="cap-expo-roll"></span> — EXPOSICIÓN DE LA TOMA</div>
+    <div class="chips mini" id="cap-ss"></div>
+    <div class="chips mini" id="cap-f"></div>
+    <div class="chips mini" id="cap-mm"></div>
+   </div>
+   <input id="cap-n" type="text" placeholder="Nombre de la persona" maxlength="60" autocomplete="off">
   <input id="cap-fam" type="text" placeholder="¿De dónde viene su familia? — su respuesta" maxlength="140" autocomplete="off">
   <input id="cap-es" type="text" placeholder="¿Y de dónde es él/ella? — dónde nació/vive" maxlength="140" autocomplete="off">
-  <div class="capnote">El dato editorial es el corazón del proyecto. Anotalo en caliente, antes de que se te escape — igual que en la libreta física.</div>
+  <div class="capnote">Anotalo en caliente: el dato editorial se evapora.</div>
   <div class="caprow">
    <button id="cap-save" class="btn">GUARDAR CAPTION</button>
    <button id="cap-later" class="btn ghost">anotaré después ⚠</button>
@@ -1465,11 +1603,75 @@ footer{margin-top:28px;color:var(--g);font-size:9.5px;border-top:3px solid var(-
 <div id="printlist"></div>
 
 
+<div id="resetmodal" class="capmodal" style="display:none">
+ <div class="capbox">
+  <div class="caphead px">⚠ EMPEZAR DE CERO</div>
+  <div class="rhint" style="font-size:12.5px;line-height:1.5">
+   Borra <b>todo tu progreso</b>: retratos, misiones, XP, gastos, rollos de película, equipaje, captions y secretos.<br><br>
+   <b>Se conservan</b> solo los pasajes ya pagados (PRE-VIAJE), que son fijos.<br><br>
+   Esto no se puede deshacer. Bajá el <b>.json</b> antes si querés respaldo.
+  </div>
+  <div class="brow" style="margin-top:14px">
+   <button class="btn big" id="reset-cancel">CANCELAR</button>
+  </div>
+  <div class="brow">
+   <button class="btn big star" id="reset-confirm" style="border-color:#8A3030;color:#E85050">SÍ, BORRAR TODO Y EMPEZAR DE CERO</button>
+  </div>
+ </div>
+</div>
+
+<div id="rollmodal" class="capmodal" style="display:none">
+ <div class="capbox rollbox">
+  <div class="rhead">
+   <div class="rhead-l">📼 <b id="roll-cur">SIN ROLLO</b></div>
+   <button class="btn small ghost" id="roll-close">✕</button>
+  </div>
+
+  <div id="roll-empty" class="rempty">
+   <div class="rhint">Solo los 89 retratos del proyecto. Cargá el rollo que tenés puesto en la Konica.</div>
+   <div class="rolab">STOCK</div><div class="chips" id="rn-stock"></div>
+   <input id="rn-stock-x" type="text" placeholder="otro stock… (ej: Gold 200)" maxlength="24" autocomplete="off">
+   <div class="rolab">ASA <span class="autohint" id="asa-auto"></span></div><div class="chips" id="rn-asa"></div>
+   <button class="btn big" id="rn-crear">CARGAR ROLLO ↑</button>
+  </div>
+
+  <div id="roll-shoot">
+   <div class="rmeter"><span id="rm-count">0</span><i>retratos en este rollo</i></div>
+
+   <div class="rexpo" id="rexpo-open">
+    <span class="rex"><i>SS</i><b id="rx-ss">1/250</b></span>
+    <span class="rex"><i>f/</i><b id="rx-f">8</b></span>
+    <span class="rex"><i>mm</i><b id="rx-mm">50</b></span>
+    <span class="rex-hint">tocá para ajustar ▾</span>
+   </div>
+   <div class="rexpo-panel" id="rexpo-panel" style="display:none">
+    <div class="rolab">SS</div><div class="chips" id="rs-ss"></div>
+    <div class="rolab">f/</div><div class="chips" id="rs-f"></div>
+    <div class="rolab">mm</div><div class="chips" id="rs-mm"></div>
+   </div>
+
+   <input id="rs-name" type="text" placeholder="nombre de la persona" maxlength="40" autocomplete="off">
+   <input id="rs-fam" type="text" placeholder="¿de dónde viene tu familia?" maxlength="120" autocomplete="off">
+   <button class="btn small ghost" id="rs-gps">📍 <span id="rs-gps-t">agregar ubicación GPS</span></button>
+   <button class="btn big star" id="rs-add-star">＋ REGISTRAR RETRATO</button>
+   <div class="rhint">También se registra al tildar el ★ retrato del día en las misiones.</div>
+  </div>
+
+  <div class="rolist" id="roll-list"></div>
+
+  <div class="rfoot">
+   <button class="btn small" id="roll-nuevo">＋ ROLLO</button>
+   <button class="btn small" id="roll-undo">↶ borrar último</button>
+   <button class="btn small" id="roll-csv">REVELADO ↓</button>
+  </div>
+ </div>
+</div>
+
 <div id="malmodal" class="capmodal" style="display:none">
  <div class="capbox malbox">
   <div class="caphead px">🧳 EQUIPAJE — LA MOCHILA DE 89 DÍAS <span id="mal-pct"></span></div>
   <div class="malbar"><div class="malbarfill" id="mal-fill"></div></div>
-  <div class="malnote">Tildá lo que ya tenés listo. Se guarda con tu partida y sale en CSV. 9 países, film, frío y calor — está pensada para tu viaje.</div>
+  <div class="malnote">Tildá lo listo. Pensada para 9 países, film, frío y calor.</div>
   <div id="mal-list" class="mal-list"></div>
   <div class="brow" style="margin-top:10px">
    <button class="btn small" id="mal-csv">EQUIPAJE → CSV</button>
@@ -1483,7 +1685,7 @@ footer{margin-top:28px;color:var(--g);font-size:9.5px;border-top:3px solid var(-
 <div id="helpmodal" class="capmodal" style="display:none">
  <div class="capbox helpbox">
   <div class="caphead px">? CÓMO SE JUEGA</div>
-  <div class="helpbody"><div style="margin-top:10px"><b>El retrato (protocolo fijo):</b> cuerpo entero · vertical · la persona en su lugar · pies en cuadro · a 3-4 m · con permiso · máx 3 tomas. Preguntá «¿de dónde viene tu familia?» y anotá nombre + respuesta.</div><div style="margin-top:8px"><b>La racha:</b> se alimenta del retrato diario — cada día con retrato multiplica el XP de ese día. El 📋 abre el DÍA 0: toda la operación del viaje (transportes, reservas, agenda) con checklist propio.</div>Tocá un nivel, un fotograma del rollo, o una ciudad del mapa (warp). En EL DÍA, deslizá la tarjeta con el dedo (o ◀ ▶) para cambiar de día. Tildá misiones: XP, invaders, ★fotos. La racha multiplica hasta ×1.5, con 3 seguros que reparan días rotos. Anotá GASTOS por categoría y FINALIZÁ el día: cerrar ≤ techo suma un día $$ que abre el LOCKER (la ropa cambia tu sprite). El 🧳 abre tu lista de equipaje (89 días, se guarda con la partida). El juego cambia de paleta según el mundo. La partida se autoguarda en el navegador; GUARDAR PARTIDA (.json) es el respaldo portable — bajalo cada noche. Ctrl/Cmd+P imprime la SHOT-LIST de mochila (las 89 fichas en papel). Dicen que un código viejo esconde algo dorado. Y que no es lo único: hay 12 secretos repartidos por el juego, y un verdadero final para quien lo termina.</div>
+  <div class="helpbody"><div style="margin-top:10px"><b>El retrato (protocolo fijo):</b> el ★ del día abre caption + exposición 📼. Protocolo completo: en PERFIL.</div><div style="margin-top:8px"><b>🔥</b> multiplica el XP del día con retrato. <b>📋</b> = DÍA 0: logística con checklist.</div>Tocá nivel, fotograma o ciudad para saltar. Deslizá la tarjeta para cambiar de día. Tildá misiones: XP, invaders, ★. 🔥 = días seguidos con retrato (3 🛡 absorben huecos). 📖 = guía, regla de foto y frases del día. Anotá GASTOS por categoría y FINALIZÁ el día: cerrar ≤ techo suma un día $$ que abre el LOCKER (la ropa cambia tu sprite). 🧳 = equipaje. 📼 = cuarto oscuro: registra los 89 retratos (nombre · «de dónde viene tu familia» · SS · f/ · 52/200mm · 📍GPS opcional); REVELADO ↓ = hoja para el escáner. El juego cambia de paleta según el mundo. Autosave activo; GUARDAR (.json) = respaldo portable. RESET = todo a cero (conserva los pasajes pagados). Ctrl/Cmd+P imprime la SHOT-LIST de mochila (las 89 fichas en papel). Un código viejo esconde algo dorado. Hay 12 secretos — y un verdadero final.</div>
   <div class="brow" style="margin-top:10px"><button class="btn" id="help-close">CERRAR</button></div>
  </div>
 </div>
@@ -1493,7 +1695,7 @@ footer{margin-top:28px;color:var(--g);font-size:9.5px;border-top:3px solid var(-
  <div class="capbox malbox">
   <div class="caphead px">📋 DÍA 0 — OPERACIÓN DEL VIAJE <span id="d0-pct"></span></div>
   <div class="malbar"><div class="malbarfill" id="d0-fill"></div></div>
-  <div class="malnote">Toda la logística vive acá, no en las misiones. Tildá lo resuelto — se guarda con tu partida.</div>
+  <div class="malnote">Toda la logística vive acá. Tildá lo resuelto.</div>
   <div id="d0-list" class="mal-list"></div>
   <div class="brow" style="margin-top:10px">
    <button class="btn small" id="d0-csv">DÍA 0 → CSV</button>
@@ -1540,7 +1742,7 @@ footer{margin-top:28px;color:var(--g);font-size:9.5px;border-top:3px solid var(-
 </div>
 
 <script>
-const VERSION='v10.1';
+const VERSION='v11.2';
 /* EDIT_LUIS — REGLA DEL RETRATO (protocolo fijo: no cambiarlo a mitad de la serie)
    cuerpo entero · VERTICAL · la persona en SU lugar · pies dentro del cuadro
    a 3-4 m · máx 3 tomas · SIEMPRE con permiso
@@ -1550,13 +1752,13 @@ const VERSION='v10.1';
 const lvOf=d=>LV[d]; // con D0 al frente, el índice ES el día
 const DAY_MIN=0, DAY_MAX=89;
 
-const D0DATA={"TRANSPORTES — COMPRADO ✓ / PENDIENTE":[["D1 · BoA OB660 LPB→VVI 5:10 + OB736 VVI→GRU 9:05","$263 PAGADO · escala 2h50 en VVI · llegás GRU 12:50"],["D2 · CA898 GRU→MAD 09:25→23:50","$359 PAGADO · aterrizás Barajas 23:50 del d2"],["D3 · Ouigo Atocha→Sants 06:22","$38.63 PAGADO · validá con tiempo, el andén es un laberinto"],["D3 · FlixBus BCN→Toulouse 15:25","$30.48 PAGADO · agua y comida, son varias horas"],["D19 · Vuelo BCN→París (1h50)","PENDIENTE · comprá con anticipación, ruta cara en septiembre"],["D50 · Trenes Tende→Breil→Ventimiglia→Monterosso","EN EL DÍA · regionales, se compran en estación"],["D53 · Ferry Jadrolinija Ancona→Split 19:45","RESERVAR · check-in 2h antes · verificá el día exacto de salida"],["D65 · Vuelo Belgrado→BCN (2h40)","PENDIENTE · comprá junto con el d19 si podés"],["D66 · LEVEL BCN→Boston","$237 PAGADO (€218,42) · ESTA IMPRESO obligatorio"],["D69 · Bus Boston→NYC (sábado 24)","Checkout 11:00 → check-in KAMA 16:00 · comprá el del mediodía"],["ALOJ · Red Monkey Barra Funda 17-18 ago · conf 5516117960","Rua Parintins 41 · R$70 con tarjeta · check-in 15:00 · recepción 07-01 · SIN candado: llevá el tuyo · cancelás gratis hasta 9 ago"],["ALOJ · HI Boston 21-24 oct · conf 6554434786","19 Stuart St · $292.41 no-reembolsable · pasaporte + tarjeta al check-in · sin alcohol"],["ALOJ · KAMA Central Park 24-29 oct · conf 6975917976","36 W 106th St · $511.98 PAGADO · desayuno incluido · avisá hora de llegada"],["D53 · Rávena→Pisa→Ancona (trenes)","Salí 7:00 · Tuttomondo ~3h · embarque ferry 17:45"],["D74 · Bus NYC→Filadelfia→DC","Comprá los DOS tramos · checkout 11:00 · tarde en Point Breeze"],["D88 · Retorno DCA→MIA→VVI→LPB","$329.99 PAGADO · cuatro tramos, dormí a bordo"]],"RESERVAS Y COMPRAS CLAVE":[["D2 · Cama junto a Atocha (~4 horas)","Llegás ~00:45 y salís 05:40: es escala, no parada — pagá poco"],["D20 · Rollos en Nation Photo (París)","Sábado: stock del tramo + 3 de reserva · cierran domingo"],["D44 · RESERVAR equipo vía ferrata","Arnés + disipador para retirar el sábado d48"],["D48 · RETIRAR equipo vía ferrata","Revisá que esté completo antes de salir del local"],["D72 · B&H (NYC) película tramo final","Cierra viernes tarde y sábado por sabbat"],["D74 · Discos/backup donde los primos","Dos copias de todos los negativos, por fecha"]],"AGENDA FIJA — NO SE MUEVE":[["D4 · MOBY en el Poney Club, puertas 17:00","Sala chica: llegá temprano"],["D5 · E·CO Sesión 2, 16:00–18:00 (Toulouse)","Wifi asegurado ANTES"],["D13 · Boda de Felicitas","Traje planchado desde el d12"],["D33 · E·CO Sesión 3, 16:00–18:00 (Montpellier)","Wifi asegurado ANTES"],["D34 · Journées du Patrimoine","Monumentos gratis todo el finde"],["D47–48 · Cumpleaños de Laurie (Niza)","Dos días de festejo"],["D49 · VOIE DES HÉRÉTIQUES (vía ferrata)","Clima verificado + equipo revisado 2 veces"],["D68 · E·CO Sesión 4 + ENTREGA FINAL, 10:00–13:00 EDT","EL deadline del proyecto QHIPA"],["D76 · Halloween con los primos","El retrato pide permiso del adulto"]]};
+const D0DATA={"TRANSPORTES — COMPRADO ✓ / PENDIENTE":[["D1 · BoA OB660 LPB→VVI 5:10 + OB736 VVI→GRU 9:05","$263 PAGADO · escala 2h50 en VVI · llegás GRU 12:50"],["D2 · CA898 GRU→MAD 09:25→23:50","$359 PAGADO · aterrizás Barajas 23:50 del d2"],["D3 · Ouigo Atocha→Sants 06:22","$38.63 PAGADO · validá con tiempo, el andén es un laberinto"],["D3 · FlixBus BCN→Toulouse 15:25","$30.48 PAGADO · agua y comida, son varias horas"],["D19 · Vuelo BCN→París (1h50)","PENDIENTE · comprá con anticipación, ruta cara en septiembre"],["D50 · Trenes Tende→Breil→Ventimiglia→Monterosso","EN EL DÍA · regionales, se compran en estación"],["D53 · Ferry Jadrolinija Ancona→Split 19:45","RESERVAR · check-in 2h antes · verificá el día exacto de salida"],["D65 · Vuelo Belgrado→BCN (2h40)","PENDIENTE · comprá junto con el d19 si podés"],["D66 · LEVEL BCN→Boston","$237 PAGADO (€218,42) · ESTA IMPRESO obligatorio"],["D69 · Bus Boston→NYC (sábado 24)","Checkout 11:00 → check-in KAMA 16:00 · comprá el del mediodía"],["ALOJ · Red Monkey Barra Funda 17-18 ago · conf 5516117960","Rua Parintins 41 · R$70 con tarjeta · check-in 15:00 · recepción 07-01 · SIN candado: llevá el tuyo · cancelás gratis hasta 9 ago"],["ALOJ · HI Boston 21-24 oct · conf 6554434786","19 Stuart St · $292.41 no-reembolsable · pasaporte + tarjeta al check-in · sin alcohol"],["ALOJ · KAMA Central Park 24-29 oct · conf 6975917976","36 W 106th St · $511.98 PAGADO · desayuno incluido · avisá hora de llegada"],["D52 · Cinque Terre→Pisa→Rávena (trenes)","Tuttomondo ~3h en Pisa · llegá a Rávena antes de las 16 (mosaicos)"],["D74 · Bus NYC→Filadelfia→DC","Comprá los DOS tramos · checkout 11:00 · tarde en Point Breeze"],["D88 · Retorno DCA→MIA→VVI→LPB","$329.99 PAGADO · cuatro tramos, dormí a bordo"]],"RESERVAS Y COMPRAS CLAVE":[["D2 · Cama junto a Atocha (~4 horas)","Llegás ~00:45 y salís 05:40: es escala, no parada — pagá poco"],["D20 · Rollos en Nation Photo (París)","Sábado: stock del tramo + 3 de reserva · cierran domingo"],["D44 · RESERVAR equipo vía ferrata","Arnés + disipador para retirar el sábado d48"],["D48 · RETIRAR equipo vía ferrata","Revisá que esté completo antes de salir del local"],["D72 · B&H (NYC) película tramo final","Cierra viernes tarde y sábado por sabbat"],["D74 · Discos/backup donde los primos","Dos copias de todos los negativos, por fecha"]],"AGENDA FIJA — NO SE MUEVE":[["D4 · MOBY en el Poney Club, puertas 17:00","Sala chica: llegá temprano"],["D5 · E·CO Sesión 2, 16:00–18:00 (Toulouse)","Wifi asegurado ANTES"],["D13 · Boda de Felicitas","Traje planchado desde el d12"],["D33 · E·CO Sesión 3, 16:00–18:00 (Montpellier)","Wifi asegurado ANTES"],["D34 · Journées du Patrimoine","Monumentos gratis todo el finde"],["D47–48 · Cumpleaños de Laurie (Niza)","Dos días de festejo"],["D49 · VOIE DES HÉRÉTIQUES (vía ferrata)","Clima verificado + equipo revisado 2 veces"],["D68 · E·CO Sesión 4 + ENTREGA FINAL, 10:00–13:00 EDT","EL deadline del proyecto QHIPA"],["D76 · Halloween con los primos","El retrato pide permiso del adulto"]]};
 let dia0={};
 
 const PACKDATA = {"cats":["FOTOGRAFÍA — LO SAGRADO","DOCUMENTOS — SIN ESTO NO VIAJÁS","ROPA — CAPAS PARA 9 PAÍSES","MOCHILA & CARGA","ELECTRÓNICA","SALUD & HIGIENE","EXTRAS DEL VIAJERO"],"items":[{"cat":"FOTOGRAFÍA — LO SAGRADO","name":"Cámara principal (telemétrica)","note":"El cuerpo de todos los días"},{"cat":"FOTOGRAFÍA — LO SAGRADO","name":"Cámara de respaldo / compacta","note":"Si falla la principal, no perdés el viaje"},{"cat":"FOTOGRAFÍA — LO SAGRADO","name":"Lentes (35mm + 50mm)","note":"El 35 para calle, el 50 para retrato"},{"cat":"FOTOGRAFÍA — LO SAGRADO","name":"Fotómetro de mano","note":"El del cuerpo puede morir; este no depende de pilas raras"},{"cat":"FOTOGRAFÍA — LO SAGRADO","name":"Rollos para arrancar (10-15)","note":"Comprás más en París/NYC, más barato que cargar todo"},{"cat":"FOTOGRAFÍA — LO SAGRADO","name":"Bolsa a prueba de rayos X","note":"Pedí inspección manual en aeropuertos con film ISO alto"},{"cat":"FOTOGRAFÍA — LO SAGRADO","name":"Trapo de microfibra + soplador","note":"Polvo en el lente arruina 36 fotos de una"},{"cat":"FOTOGRAFÍA — LO SAGRADO","name":"Cinta gaffer (rollo chico)","note":"Arregla todo: fugas de luz, correas, cajas"},{"cat":"FOTOGRAFÍA — LO SAGRADO","name":"Baterías de repuesto del cuerpo","note":"Las de telemétrica no se consiguen en todos lados"},{"cat":"FOTOGRAFÍA — LO SAGRADO","name":"Libreta + lápiz para captions","note":"Nombre y origen de cada retrato, sin depender del teléfono"},{"cat":"FOTOGRAFÍA — LO SAGRADO","name":"Marcador para rotular rollos","note":"Rollo expuesto sin rotular = ruleta rusa"},{"cat":"DOCUMENTOS — SIN ESTO NO VIAJÁS","name":"Pasaporte español","note":"Vigencia +6 meses; sacá foto y guardala en la nube"},{"cat":"DOCUMENTOS — SIN ESTO NO VIAJÁS","name":"DNI / carnet boliviano","note":"Backup de identidad"},{"cat":"DOCUMENTOS — SIN ESTO NO VIAJÁS","name":"ESTA aprobado (EEUU) impreso","note":"Migración de EEUU no perdona"},{"cat":"DOCUMENTOS — SIN ESTO NO VIAJÁS","name":"Tarjetas de crédito/débito (2+)","note":"Avisá al banco las fechas y países"},{"cat":"DOCUMENTOS — SIN ESTO NO VIAJÁS","name":"Efectivo USD/EUR de emergencia","note":"Para los Balcanes y splavovi donde el plástico no entra"},{"cat":"DOCUMENTOS — SIN ESTO NO VIAJÁS","name":"Seguro de viaje (póliza + teléfono)","note":"89 días sin seguro es jugar con fuego"},{"cat":"DOCUMENTOS — SIN ESTO NO VIAJÁS","name":"Copias digitales de todo","note":"En mail y en la nube, por si perdés la billetera"},{"cat":"DOCUMENTOS — SIN ESTO NO VIAJÁS","name":"Contactos de emergencia en papel","note":"Si el teléfono muere, seguís teniendo los números"},{"cat":"ROPA — CAPAS PARA 9 PAÍSES","name":"Poncho / capa térmica andina","note":"La raíz que abriga; Normandía y vía ferrata son frías"},{"cat":"ROPA — CAPAS PARA 9 PAÍSES","name":"Campera impermeable liviana","note":"Bretaña y el Adriático te van a mojar"},{"cat":"ROPA — CAPAS PARA 9 PAÍSES","name":"Buzo / polar","note":"Las noches de octubre en los Balcanes bajan"},{"cat":"ROPA — CAPAS PARA 9 PAÍSES","name":"Remeras (4-5)","note":"Secado rápido; lavás en el camino"},{"cat":"ROPA — CAPAS PARA 9 PAÍSES","name":"Pantalón largo resistente (2)","note":"Uno para trekking, uno para ciudad"},{"cat":"ROPA — CAPAS PARA 9 PAÍSES","name":"Short / pantalón liviano","note":"Calor de São Paulo y sur de Francia"},{"cat":"ROPA — CAPAS PARA 9 PAÍSES","name":"Ropa interior + medias (5-7)","note":"Material técnico que seca de un día para otro"},{"cat":"ROPA — CAPAS PARA 9 PAÍSES","name":"Zapatillas de trekking","note":"Cinque Terre, calanques y vía ferrata las exigen"},{"cat":"ROPA — CAPAS PARA 9 PAÍSES","name":"Zapatillas urbanas cómodas","note":"Vas a caminar 10.000+ pasos casi todos los días"},{"cat":"ROPA — CAPAS PARA 9 PAÍSES","name":"Traje / camisa para la boda","note":"Felicitas se casa el día 13; no improvises esto"},{"cat":"ROPA — CAPAS PARA 9 PAÍSES","name":"Gorro de lana + guantes finos","note":"Albas fríos de Mont-Saint-Michel y montaña"},{"cat":"ROPA — CAPAS PARA 9 PAÍSES","name":"Gorra / sombrero de sol","note":"Balcanes y sur al mediodía pegan fuerte"},{"cat":"ROPA — CAPAS PARA 9 PAÍSES","name":"Traje de baño","note":"Calanques, Adriático, playas"},{"cat":"MOCHILA & CARGA","name":"Mochila principal (40-50L)","note":"Cabina si podés; evitás esperar y perder valijas"},{"cat":"MOCHILA & CARGA","name":"Daypack chico plegable","note":"Para las salidas del día con la cámara"},{"cat":"MOCHILA & CARGA","name":"Candados TSA","note":"Para hostels y trenes nocturnos"},{"cat":"MOCHILA & CARGA","name":"Funda impermeable para mochila","note":"Cubre todo en un aguacero"},{"cat":"MOCHILA & CARGA","name":"Bolsas de compresión","note":"Triplican el espacio de la ropa"},{"cat":"ELECTRÓNICA","name":"Teléfono + cargador","note":"Mapas, FlashInvaders, respaldo de captions"},{"cat":"ELECTRÓNICA","name":"Adaptador universal de enchufe","note":"BR/EU/US/Balcanes usan distintos"},{"cat":"ELECTRÓNICA","name":"Batería externa (power bank)","note":"Días largos sin enchufe a la vista"},{"cat":"ELECTRÓNICA","name":"Cables (USB-C, Lightning)","note":"Uno se rompe siempre; llevá repuesto"},{"cat":"ELECTRÓNICA","name":"Auriculares","note":"Gorillaz y Kalkbrenner en los trenes largos"},{"cat":"ELECTRÓNICA","name":"Disco/SSD para backup de scans","note":"Copiás negativos en lo de los primos (día 74)"},{"cat":"SALUD & HIGIENE","name":"Botiquín básico","note":"Ibuprofeno, curitas, antidiarreico, antihistamínico"},{"cat":"SALUD & HIGIENE","name":"Medicación personal + receta","note":"Cantidad para 89 días; la receta por si preguntan"},{"cat":"SALUD & HIGIENE","name":"Protector solar","note":"Altura, mar y nieve queman distinto"},{"cat":"SALUD & HIGIENE","name":"Neceser de higiene (viaje)","note":"Tamaños de cabina para no facturar"},{"cat":"SALUD & HIGIENE","name":"Toalla de microfibra","note":"Los hostels a veces no dan o cobran"},{"cat":"SALUD & HIGIENE","name":"Repelente de insectos","note":"Verano tardío en el sur y Balcanes"},{"cat":"SALUD & HIGIENE","name":"Tapones para oídos + antifaz","note":"Ferry nocturno, hostels, trenes"},{"cat":"EXTRAS DEL VIAJERO","name":"Botella de agua reutilizable","note":"Ahorra plata y plástico en 89 días"},{"cat":"EXTRAS DEL VIAJERO","name":"Candado de cable liviano","note":"Para asegurar la mochila en buses/trenes"},{"cat":"EXTRAS DEL VIAJERO","name":"Bolsa de tela plegable","note":"Compras, ropa sucia, mercado"},{"cat":"EXTRAS DEL VIAJERO","name":"Snacks / barras para tramos largos","note":"Los transportes low-cost no siempre tienen"},{"cat":"EXTRAS DEL VIAJERO","name":"Cuaderno de viaje","note":"Más allá de las captions: el diario del camino"},{"cat":"EXTRAS DEL VIAJERO","name":"Tarjetas de contacto + mini-release","note":"Para los retratos y posibles concursos"}]};
 let maleta = {};
 
-const LV = [{"i":0,"f":0,"fe":"Dom 16 ago","lug":"La Paz","co":"BO","panel":"map0","c":0,"nn":"0/0","cap":0,"nota":"DÍA 0 · La Paz. Todo listo antes de las 00:00. El vuelo OB660 sale 05:10.","b":"LA PREPARACIÓN","g":{"d":"Tu cama, La Paz — última noche","c":"Lo que haya en casa","t":"Salí a las 3:00 para el aeropuerto. Rollos en equipaje de mano, SIEMPRE."},"ms":[]},{"i":1,"f":0,"fe":"Lun 17 ago","lug":"São Paulo","panel":"map0","c":1,"nn":"1/1","nota":"LPB→VVI→GRU (BoA) · vuelta al Beco con la toma decidida — los invaders de SP ya son tuyos","ms":[],"cap":50,"co":"BR","b":"EL DESPEGUE","g":{"d":"Red Monkey Hostel, Barra Funda · R$70 · check-in 15:00","c":"Pastel de feira, caldo de cana","t":"Del hostel al Beco: ~40 min a pie o metro — y el Memorial da América Latina a 5 min de tu puerta"}},{"i":2,"f":1,"fe":"Mar 18 ago","lug":"Madrid","panel":"map1","c":0,"nn":"1/1","nota":"CA898 llega 23:50 · dormí junto a Atocha","ms":[],"cap":55,"co":"ES","b":"CA898","g":{"d":"Hostel junto a Atocha, €30–45 (NO Barajas)","c":"Nada: dormís 3,5h","t":"El Ouigo sale de Atocha 06:22"}},{"i":3,"f":1,"fe":"Mié 19 ago","lug":"Toulouse","panel":"map1","c":1,"nn":"1/4","nota":"19: Ouigo+FlixBus · 20: MOBY · 21: Albi · 22: Carcassonne","ms":[],"cap":80,"co":"FR","b":"TRIPLE TRANSPORTE","g":{"d":"Auberge de Saint-Sernin, €25–30","c":"Cassoulet, mercado Victor Hugo","t":"La 'ville rose' al atardecer es Portra puro"}},{"i":4,"f":1,"fe":"Jue 20 ago","lug":"Toulouse","panel":"map1","c":1,"nn":"2/4","nota":"19: Ouigo+FlixBus · 20: MOBY · 21: Albi · 22: Carcassonne","ms":[],"cap":80,"co":"FR","b":"MOBY","g":{"d":"Auberge de Saint-Sernin, €25–30","c":"Cassoulet, mercado Victor Hugo","t":"La 'ville rose' al atardecer es Portra puro"}},{"i":5,"f":1,"fe":"Vie 21 ago","lug":"Toulouse","panel":"map1","c":1,"nn":"3/4","nota":"19: Ouigo+FlixBus · 20: MOBY · 21: Albi · 22: Carcassonne","ms":[],"cap":80,"co":"FR","g":{"d":"Auberge de Saint-Sernin, €25–30","c":"Cassoulet, mercado Victor Hugo","t":"La 'ville rose' al atardecer es Portra puro"}},{"i":6,"f":1,"fe":"Sáb 22 ago","lug":"Toulouse","panel":"map1","c":1,"nn":"4/4","nota":"19: Ouigo+FlixBus · 20: MOBY · 21: Albi · 22: Carcassonne","ms":[],"cap":80,"co":"FR","g":{"d":"Auberge de Saint-Sernin, €25–30","c":"Cassoulet, mercado Victor Hugo","t":"La 'ville rose' al atardecer es Portra puro"}},{"i":7,"f":1,"fe":"Dom 23 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"1/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":80,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":8,"f":1,"fe":"Lun 24 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"2/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":78,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":9,"f":1,"fe":"Mar 25 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"3/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":78,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":10,"f":1,"fe":"Mié 26 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"4/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":78,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":11,"f":1,"fe":"Jue 27 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"5/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":75,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":12,"f":1,"fe":"Vie 28 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"6/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":78,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":13,"f":1,"fe":"Sáb 29 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"7/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":110,"co":"ES","b":"LA BODA","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":14,"f":1,"fe":"Dom 30 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"8/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":75,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":15,"f":1,"fe":"Lun 31 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"9/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":78,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":16,"f":1,"fe":"Mar 1 sep","lug":"Barcelona","panel":"map1","c":2,"nn":"10/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":75,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":17,"f":1,"fe":"Mié 2 sep","lug":"Barcelona","panel":"map1","c":2,"nn":"11/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":75,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":18,"f":1,"fe":"Jue 3 sep","lug":"Barcelona","panel":"map1","c":2,"nn":"12/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":75,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":19,"f":1,"fe":"Vie 4 sep","lug":"París","panel":"map1","c":3,"nn":"1/5","nota":"1.500+ invaders · Design Week · Versalles/Fontainebleau","ms":[],"cap":95,"co":"FR","g":{"d":"3 Ducks o Generator, €38–45","c":"Quatrehomme, L'As du Fallafel","t":"Película en Nation Photo — más barato que cargar stock"}},{"i":20,"f":1,"fe":"Sáb 5 sep","lug":"París","panel":"map1","c":3,"nn":"2/5","nota":"1.500+ invaders · Design Week · Versalles/Fontainebleau","ms":[],"cap":95,"co":"FR","g":{"d":"3 Ducks o Generator, €38–45","c":"Quatrehomme, L'As du Fallafel","t":"Película en Nation Photo — más barato que cargar stock"}},{"i":21,"f":1,"fe":"Dom 6 sep","lug":"París","panel":"map1","c":3,"nn":"3/5","nota":"1.500+ invaders · Design Week · Versalles/Fontainebleau","ms":[],"cap":95,"co":"FR","g":{"d":"3 Ducks o Generator, €38–45","c":"Quatrehomme, L'As du Fallafel","t":"Película en Nation Photo — más barato que cargar stock"}},{"i":22,"f":1,"fe":"Lun 7 sep","lug":"París","panel":"map1","c":3,"nn":"4/5","nota":"1.500+ invaders · Design Week · Versalles/Fontainebleau","ms":[],"cap":95,"co":"FR","g":{"d":"3 Ducks o Generator, €38–45","c":"Quatrehomme, L'As du Fallafel","t":"Película en Nation Photo — más barato que cargar stock"}},{"i":23,"f":1,"fe":"Mar 8 sep","lug":"París","panel":"map1","c":3,"nn":"5/5","nota":"1.500+ invaders · Design Week · Versalles/Fontainebleau","ms":[],"cap":95,"co":"FR","g":{"d":"3 Ducks o Generator, €38–45","c":"Quatrehomme, L'As du Fallafel","t":"Película en Nation Photo — más barato que cargar stock"}},{"i":24,"f":1,"fe":"Mié 9 sep","lug":"Honfleur","panel":"map1","c":4,"nn":"1/2","nota":"Étretat · quesos AOP normandos","ms":[],"cap":85,"co":"FR","g":{"d":"Ibis Budget, €45–55","c":"Moules, sidra, Camembert","t":"El Vieux Bassin a primera hora, sin gente"}},{"i":25,"f":1,"fe":"Jue 10 sep","lug":"Honfleur","panel":"map1","c":4,"nn":"2/2","nota":"Étretat · quesos AOP normandos","ms":[],"cap":85,"co":"FR","g":{"d":"Ibis Budget, €45–55","c":"Moules, sidra, Camembert","t":"El Vieux Bassin a primera hora, sin gente"}},{"i":26,"f":1,"fe":"Vie 11 sep","lug":"Mont Saint-Michel","panel":"map1","c":5,"nn":"1/1","nota":"dormís al pie · mareas · alba solo","ms":[],"cap":100,"co":"FR","g":{"d":"La Caserne (Hôtel Vert), €70–85 — excepción","c":"Galettes","t":"Pasarela a pie 1h antes del atardecer; volvé al alba"}},{"i":27,"f":1,"fe":"Sáb 12 sep","lug":"Saint-Malo","panel":"map1","c":6,"nn":"1/2","nota":"mercado sáb · ostras en Cancale","ms":[],"cap":85,"co":"FR","g":{"d":"Auberge HI Patrick Varangot, €25–30","c":"Ostras en Cancale, kouign-amann","t":"Sábado: mercado · marea alta = olas contra la muralla"}},{"i":28,"f":1,"fe":"Dom 13 sep","lug":"Saint-Malo","panel":"map1","c":6,"nn":"2/2","nota":"mercado sáb · ostras en Cancale","ms":[],"cap":85,"co":"FR","g":{"d":"Auberge HI Patrick Varangot, €25–30","c":"Ostras en Cancale, kouign-amann","t":"Sábado: mercado · marea alta = olas contra la muralla"}},{"i":29,"f":1,"fe":"Lun 14 sep","lug":"Bordeaux","panel":"map1","c":7,"nn":"1/1","nota":"escala invader en Rennes · vendimia","ms":[],"cap":85,"co":"FR","g":{"d":"Central Hostel, €30–40","c":"Canelés, entrecôte à la bordelaise","t":"Septiembre = vendimia en su pico"}},{"i":30,"f":1,"fe":"Mar 15 sep","lug":"Sarlat / Dordoña","panel":"map1","c":8,"nn":"1/3","nota":"mercado mié · canoa por el río","ms":[],"cap":82,"co":"FR","g":{"d":"Chambre d'hôtes casco viejo, €40–50","c":"Foie, pommes sarladaises, nueces","t":"Mercado miércoles · la canoa ES el transporte"}},{"i":31,"f":1,"fe":"Mié 16 sep","lug":"Sarlat / Dordoña","panel":"map1","c":8,"nn":"2/3","nota":"mercado mié · canoa por el río","ms":[],"cap":85,"co":"FR","g":{"d":"Chambre d'hôtes casco viejo, €40–50","c":"Foie, pommes sarladaises, nueces","t":"Mercado miércoles · la canoa ES el transporte"}},{"i":32,"f":1,"fe":"Jue 17 sep","lug":"Sarlat / Dordoña","panel":"map1","c":8,"nn":"3/3","nota":"mercado mié · canoa por el río","ms":[],"cap":85,"co":"FR","g":{"d":"Chambre d'hôtes casco viejo, €40–50","c":"Foie, pommes sarladaises, nueces","t":"Mercado miércoles · la canoa ES el transporte"}},{"i":33,"f":2,"fe":"Vie 18 sep","lug":"Montpellier","panel":"map2","c":9,"nn":"1/2","nota":"Journées du Patrimoine 19–20","ms":[],"cap":80,"co":"FR","g":{"d":"Hostel del Écusson, €25–35","c":"Tielle sétoise, pélardon","t":"Patrimoine 19–20: monumentos gratis"}},{"i":34,"f":2,"fe":"Sáb 19 sep","lug":"Montpellier","panel":"map2","c":9,"nn":"2/2","nota":"Journées du Patrimoine 19–20","ms":[],"cap":82,"co":"FR","g":{"d":"Hostel del Écusson, €25–35","c":"Tielle sétoise, pélardon","t":"Patrimoine 19–20: monumentos gratis"}},{"i":35,"f":2,"fe":"Dom 20 sep","lug":"Nîmes","panel":"map2","c":23,"nn":"1/1","nota":"la Roma francesa · Patrimoine","ms":[],"cap":80,"co":"FR","g":{"d":"Hostel cerca de la arena, €30–40","c":"Brandade de morue","t":"Arena + Maison Carrée con acceso Patrimoine"}},{"i":36,"f":2,"fe":"Lun 21 sep","lug":"Aviñón","panel":"map2","c":10,"nn":"1/2","nota":"medio día Arles · Palais des Papes","ms":[],"cap":82,"co":"FR","g":{"d":"Hostel intramuros, €30–40","c":"Mercado Les Halles (cierra lunes)","t":"Pont du Gard opcional en bus desde Nîmes"}},{"i":37,"f":2,"fe":"Mar 22 sep","lug":"Aviñón","panel":"map2","c":10,"nn":"2/2","nota":"medio día Arles · Palais des Papes","ms":[],"cap":88,"co":"FR","g":{"d":"Hostel intramuros, €30–40","c":"Mercado Les Halles (cierra lunes)","t":"Pont du Gard opcional en bus desde Nîmes"}},{"i":38,"f":2,"fe":"Mié 23 sep","lug":"Marsella","panel":"map2","c":11,"nn":"1/4","nota":"~100 invaders · calanques · Cours Julien","ms":[],"cap":85,"co":"FR","g":{"d":"Vertigo Vieux-Port, €28–38","c":"Chez Étienne, panisses","t":"Sugiton a pie · Le Panier + Cours Julien"}},{"i":39,"f":2,"fe":"Jue 24 sep","lug":"Marsella","panel":"map2","c":11,"nn":"2/4","nota":"~100 invaders · calanques · Cours Julien","ms":[],"cap":85,"co":"FR","g":{"d":"Vertigo Vieux-Port, €28–38","c":"Chez Étienne, panisses","t":"Sugiton a pie · Le Panier + Cours Julien"}},{"i":40,"f":2,"fe":"Vie 25 sep","lug":"Marsella","panel":"map2","c":11,"nn":"3/4","nota":"~100 invaders · calanques · Cours Julien","ms":[],"cap":85,"co":"FR","g":{"d":"Vertigo Vieux-Port, €28–38","c":"Chez Étienne, panisses","t":"Sugiton a pie · Le Panier + Cours Julien"}},{"i":41,"f":2,"fe":"Sáb 26 sep","lug":"Marsella","panel":"map2","c":11,"nn":"4/4","nota":"~100 invaders · calanques · Cours Julien","ms":[],"cap":85,"co":"FR","g":{"d":"Vertigo Vieux-Port, €28–38","c":"Chez Étienne, panisses","t":"Sugiton a pie · Le Panier + Cours Julien"}},{"i":42,"f":2,"fe":"Dom 27 sep","lug":"Antibes","panel":"map2","c":12,"nn":"1/2","nota":"Cannes · museo Picasso","ms":[],"cap":82,"co":"FR","g":{"d":"The Crew House, €30–40","c":"Socca, mercado provenzal","t":"Hostel de marineros: buenas historias"}},{"i":43,"f":2,"fe":"Lun 28 sep","lug":"Antibes","panel":"map2","c":12,"nn":"2/2","nota":"Cannes · museo Picasso","ms":[],"cap":90,"co":"FR","g":{"d":"The Crew House, €30–40","c":"Socca, mercado provenzal","t":"Hostel de marineros: buenas historias"}},{"i":44,"f":2,"fe":"Mar 29 sep","lug":"Niza","panel":"map2","c":13,"nn":"1/5","nota":"CUMPLE LAURIE vie 2–sáb 3 · Menton/Èze","ms":[],"cap":90,"co":"FR","g":{"d":"Villa Saint-Exupéry Beach, €32–45 — reservá YA","c":"Socca de Chez Pipo, pan bagnat","t":"Cumple Laurie · salís dom 4 a Tende"}},{"i":45,"f":2,"fe":"Mié 30 sep","lug":"Niza","panel":"map2","c":13,"nn":"2/5","nota":"CUMPLE LAURIE vie 2–sáb 3 · Menton/Èze","ms":[],"cap":88,"co":"FR","g":{"d":"Villa Saint-Exupéry Beach, €32–45 — reservá YA","c":"Socca de Chez Pipo, pan bagnat","t":"Cumple Laurie · salís dom 4 a Tende"}},{"i":46,"f":2,"fe":"Jue 1 oct","lug":"Niza","panel":"map2","c":13,"nn":"3/5","nota":"CUMPLE LAURIE vie 2–sáb 3 · Menton/Èze","ms":[],"cap":88,"co":"FR","g":{"d":"Villa Saint-Exupéry Beach, €32–45 — reservá YA","c":"Socca de Chez Pipo, pan bagnat","t":"Cumple Laurie · salís dom 4 a Tende"}},{"i":47,"f":2,"fe":"Vie 2 oct","lug":"Niza","panel":"map2","c":13,"nn":"4/5","nota":"CUMPLE LAURIE vie 2–sáb 3 · Menton/Èze","ms":[],"cap":100,"co":"FR","b":"CUMPLE DE LAURIE · I","g":{"d":"Villa Saint-Exupéry Beach, €32–45 — reservá YA","c":"Socca de Chez Pipo, pan bagnat","t":"Cumple Laurie · salís dom 4 a Tende"}},{"i":48,"f":2,"fe":"Sáb 3 oct","lug":"Niza","panel":"map2","c":13,"nn":"5/5","nota":"CUMPLE LAURIE vie 2–sáb 3 · Menton/Èze","ms":[],"cap":95,"co":"FR","b":"CUMPLE DE LAURIE · II","g":{"d":"Villa Saint-Exupéry Beach, €32–45 — reservá YA","c":"Socca de Chez Pipo, pan bagnat","t":"Cumple Laurie · salís dom 4 a Tende"}},{"i":49,"f":2,"fe":"Dom 4 oct","lug":"Tende (Roya)","panel":"map2","c":24,"nn":"1/1","nota":"VÍA FERRATA Voie des Hérétiques · Train des Merveilles","ms":[],"cap":90,"co":"FR","b":"VÍA FERRATA — JEFE FINAL DE FRANCIA","g":{"d":"Hôtel/gîte del pueblo, €45–60 — poca oferta","c":"Polenta, quesos de la Roya","t":"Equipo de VF: alquilalo en Niza · mirá el clima"}},{"i":50,"f":3,"fe":"Lun 5 oct","lug":"Cinque Terre","panel":"map3","c":14,"nn":"1/2","nota":"caminata Monterosso→Riomaggiore","ms":[],"cap":80,"co":"IT","g":{"d":"Dorm Monterosso €35–50 (o La Spezia €25–35)","c":"Pesto, focaccia, anchoas","t":"Caminata 8am: luz + menos gente · CT Card €7,50"}},{"i":51,"f":3,"fe":"Mar 6 oct","lug":"Cinque Terre","panel":"map3","c":14,"nn":"2/2","nota":"caminata Monterosso→Riomaggiore","ms":[],"cap":90,"co":"IT","g":{"d":"Dorm Monterosso €35–50 (o La Spezia €25–35)","c":"Pesto, focaccia, anchoas","t":"Caminata 8am: luz + menos gente · CT Card €7,50"}},{"i":52,"f":3,"fe":"Mié 7 oct","lug":"Rávena","panel":"map3","c":15,"nn":"1/1","nota":"PISA 4h en ruta: Tuttomondo · mosaicos","ms":[],"cap":88,"co":"IT","g":{"d":"B&B céntrico, €35–45","c":"Piadina romagnola","t":"Mosaicos cierran ~19h: llegá antes de las 16"}},{"i":53,"f":3,"fe":"Jue 8 oct","lug":"Ferry Ancona→Split","panel":"map3","c":16,"nn":"1/1","nota":"noche a bordo · Jadrolinija 19:45","ms":[],"cap":90,"co":"IT","b":"PISA EXPRÉS + EL FERRY","g":{"d":"Butaca del ferry €55–70 (cabina +€30)","c":"Cena a bordo o comprá antes","t":"Check-in 2h antes · verificá el día exacto"}},{"i":54,"f":3,"fe":"Vie 9 oct","lug":"Split","panel":"map3","c":17,"nn":"1/3","nota":"Diocleciano al alba · Trogir","ms":[],"cap":70,"co":"HR","g":{"d":"Dorm casco antiguo, €18–25","c":"Pašticada, sardinas","t":"El palacio a las 6:30am: pasillos romanos vacíos"}},{"i":55,"f":3,"fe":"Sáb 10 oct","lug":"Split","panel":"map3","c":17,"nn":"2/3","nota":"Diocleciano al alba · Trogir","ms":[],"cap":70,"co":"HR","g":{"d":"Dorm casco antiguo, €18–25","c":"Pašticada, sardinas","t":"El palacio a las 6:30am: pasillos romanos vacíos"}},{"i":56,"f":3,"fe":"Dom 11 oct","lug":"Split","panel":"map3","c":17,"nn":"3/3","nota":"Diocleciano al alba · Trogir","ms":[],"cap":70,"co":"HR","g":{"d":"Dorm casco antiguo, €18–25","c":"Pašticada, sardinas","t":"El palacio a las 6:30am: pasillos romanos vacíos"}},{"i":57,"f":3,"fe":"Lun 12 oct","lug":"Mostar","panel":"map3","c":18,"nn":"1/1","nota":"Grude+Kravice en ruta · Stari Most","ms":[],"cap":55,"co":"BA","b":"GRUDE RUN","g":{"d":"Hostel Miran, €12–16","c":"Ćevapi, burek","t":"Stari Most de noche · Blagaj al alba"}},{"i":58,"f":3,"fe":"Mar 13 oct","lug":"Sarajevo","panel":"map3","c":19,"nn":"1/4","nota":"bobsled olímpico · Túnel de la Esperanza","ms":[],"cap":50,"co":"BA","g":{"d":"Hostel Franz Ferdinand, €13–18","c":"Ćevapi en Željo, café bosnio","t":"El bobsled se camina 1h: subí con tiempo"}},{"i":59,"f":3,"fe":"Mié 14 oct","lug":"Sarajevo","panel":"map3","c":19,"nn":"2/4","nota":"bobsled olímpico · Túnel de la Esperanza","ms":[],"cap":50,"co":"BA","g":{"d":"Hostel Franz Ferdinand, €13–18","c":"Ćevapi en Željo, café bosnio","t":"El bobsled se camina 1h: subí con tiempo"}},{"i":60,"f":3,"fe":"Jue 15 oct","lug":"Sarajevo","panel":"map3","c":19,"nn":"3/4","nota":"bobsled olímpico · Túnel de la Esperanza","ms":[],"cap":50,"co":"BA","g":{"d":"Hostel Franz Ferdinand, €13–18","c":"Ćevapi en Željo, café bosnio","t":"El bobsled se camina 1h: subí con tiempo"}},{"i":61,"f":3,"fe":"Vie 16 oct","lug":"Sarajevo","panel":"map3","c":19,"nn":"4/4","nota":"bobsled olímpico · Túnel de la Esperanza","ms":[],"cap":50,"co":"BA","g":{"d":"Hostel Franz Ferdinand, €13–18","c":"Ćevapi en Željo, café bosnio","t":"El bobsled se camina 1h: subí con tiempo"}},{"i":62,"f":3,"fe":"Sáb 17 oct","lug":"Belgrado","panel":"map3","c":20,"nn":"1/3","nota":"splavovi · Novi Sad · street art","ms":[],"cap":48,"co":"RS","g":{"d":"Hedonist Hostel (Skadarlija), €12–18","c":"Pljeskavica, kajmak","t":"Splavovi jue–dom desde medianoche · efectivo"}},{"i":63,"f":3,"fe":"Dom 18 oct","lug":"Belgrado","panel":"map3","c":20,"nn":"2/3","nota":"splavovi · Novi Sad · street art","ms":[],"cap":50,"co":"RS","g":{"d":"Hedonist Hostel (Skadarlija), €12–18","c":"Pljeskavica, kajmak","t":"Splavovi jue–dom desde medianoche · efectivo"}},{"i":64,"f":3,"fe":"Lun 19 oct","lug":"Belgrado","panel":"map3","c":20,"nn":"3/3","nota":"splavovi · Novi Sad · street art","ms":[],"cap":48,"co":"RS","g":{"d":"Hedonist Hostel (Skadarlija), €12–18","c":"Pljeskavica, kajmak","t":"Splavovi jue–dom desde medianoche · efectivo"}},{"i":65,"f":3,"fe":"Mar 20 oct","lug":"Barcelona (tránsito)","panel":"map3","c":2,"nn":"1/1","nota":"vuelo desde Belgrado · último vermut","ms":[],"cap":78,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":66,"f":4,"fe":"Mié 21 oct","lug":"Boston","panel":"map4","c":0,"nn":"1/2","nota":"Level llega por la tarde · Freedom Trail · North End","ms":[],"cap":145,"co":"US","b":"EL TRANSATLÁNTICO","g":{"d":"HI Boston (Booking), $55–70","c":"Clam chowder, cannoli en Mike's","t":"Caés del avión: día 1 tranquilo · foliage pico"}},{"i":67,"f":4,"fe":"Jue 22 oct","lug":"Boston","panel":"map4","c":0,"nn":"2/2","nota":"Level llega por la tarde · Freedom Trail · North End","ms":[],"cap":145,"co":"US","g":{"d":"HI Boston (Booking), $55–70","c":"Clam chowder, cannoli en Mike's","t":"Caés del avión: día 1 tranquilo · foliage pico"}},{"i":68,"f":4,"fe":"Vie 23 oct","lug":"Boston","panel":"map4","c":1,"nn":"1/5","nota":"219 instalados (no todos viven) · Bushwick · B&H","ms":[],"cap":150,"co":"US","g":{"d":"HI NYC Upper West (Booking), $60–75","c":"Slice, bagels, Flushing","t":"B&H cierra vie tarde y sábado"},"b":"LA ENTREGA FINAL E·CO"},{"i":69,"f":4,"fe":"Sáb 24 oct","lug":"Nueva York","panel":"map4","c":1,"nn":"2/5","nota":"219 instalados (no todos viven) · Bushwick · B&H","ms":[],"cap":150,"co":"US","g":{"d":"HI NYC Upper West (Booking), $60–75","c":"Slice, bagels, Flushing","t":"B&H cierra vie tarde y sábado"}},{"i":70,"f":4,"fe":"Dom 25 oct","lug":"Nueva York","panel":"map4","c":1,"nn":"3/5","nota":"219 instalados (no todos viven) · Bushwick · B&H","ms":[],"cap":145,"co":"US","g":{"d":"HI NYC Upper West (Booking), $60–75","c":"Slice, bagels, Flushing","t":"B&H cierra vie tarde y sábado"}},{"i":71,"f":4,"fe":"Lun 26 oct","lug":"Nueva York","panel":"map4","c":1,"nn":"4/5","nota":"219 instalados (no todos viven) · Bushwick · B&H","ms":[],"cap":145,"co":"US","g":{"d":"HI NYC Upper West (Booking), $60–75","c":"Slice, bagels, Flushing","t":"B&H cierra vie tarde y sábado"}},{"i":72,"f":4,"fe":"Mar 27 oct","lug":"Nueva York","panel":"map4","c":1,"nn":"5/5","nota":"219 instalados (no todos viven) · Bushwick · B&H","ms":[],"cap":140,"co":"US","g":{"d":"HI NYC Upper West (Booking), $60–75","c":"Slice, bagels, Flushing","t":"B&H cierra vie tarde y sábado"}},{"i":73,"f":4,"fe":"Mié 28 oct","lug":"Maryland / DC","panel":"map4","c":3,"nn":"1/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":140,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":74,"f":4,"fe":"Jue 29 oct","lug":"Filadelfia / DC","panel":"map4","c":3,"nn":"2/15","nota":"NYC→Filadelfia→DC · We The Youth de Haring cierra el arco que abriste en Pisa","ms":[],"cap":65,"co":"US","g":{"d":"Donde los primos, Maryland","c":"Cheesesteak en Philly: Pat's, Geno's o Jim's","t":"Checkout 11:00 · bus a Philly ~2h · tarde en Point Breeze · bus a DC ~3h"},"b":"EL ARCO HARING"},{"i":75,"f":4,"fe":"Vie 30 oct","lug":"Maryland / DC","panel":"map4","c":3,"nn":"3/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":76,"f":4,"fe":"Sáb 31 oct","lug":"Maryland / DC","panel":"map4","c":3,"nn":"4/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":75,"co":"US","b":"HALLOWEEN","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":77,"f":4,"fe":"Dom 1 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"5/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"},"b":"LA DIÁSPORA"},{"i":78,"f":4,"fe":"Lun 2 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"6/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":79,"f":4,"fe":"Mar 3 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"7/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":70,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":80,"f":4,"fe":"Mié 4 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"8/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":81,"f":4,"fe":"Jue 5 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"9/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":82,"f":4,"fe":"Vie 6 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"10/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":83,"f":4,"fe":"Sáb 7 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"11/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":84,"f":4,"fe":"Dom 8 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"12/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":85,"f":4,"fe":"Lun 9 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"13/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":86,"f":4,"fe":"Mar 10 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"14/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":87,"f":4,"fe":"Mié 11 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"15/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":88,"f":4,"fe":"Jue 12 nov","lug":"Vuelo DCA→LPB","panel":"map4","c":3,"nn":"1/1","nota":"noche a bordo · DCA→MIA→VVI→LPB","ms":[],"cap":145,"co":"US","b":"EL RETORNO — JEFE FINAL","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":89,"f":0,"fe":"Vie 13 nov","lug":"La Paz — llegaste","panel":"map0","c":0,"nn":"—","nota":"06:25 · 88 noches · 9 países · el proyecto se cierra en casa","ms":[],"cap":0,"b":"GAME COMPLETE","co":"BO","g":{"d":"Tu cama, La Paz","c":"Salteña de verdad, en tu ciudad","t":"Aterrizás 06:25. El rollo final se cierra en casa"}}];
+const LV = [{"i":0,"f":0,"fe":"Dom 16 ago","lug":"La Paz","co":"BO","panel":"map0","c":0,"nn":"0/0","cap":0,"nota":"DÍA 0 · La Paz. Todo listo antes de las 00:00. El vuelo OB660 sale 05:10.","b":"LA PREPARACIÓN","g":{"d":"Tu cama, La Paz — última noche","c":"Lo que haya en casa","t":"Salí a las 3:00 para el aeropuerto. Rollos en equipaje de mano, SIEMPRE."},"ms":[]},{"i":1,"f":0,"fe":"Lun 17 ago","lug":"São Paulo","panel":"map0","c":1,"nn":"1/1","nota":"LPB→VVI→GRU (BoA) · SP ya flasheada y el Beco ya visitado: hoy toca Niemeyer y Minhocão","ms":[],"cap":50,"co":"BR","b":"EL DESPEGUE","g":{"d":"Red Monkey Hostel, Barra Funda · R$69,55 PAGADO ($13,61) · Rua Parintins 41 · check-in 15:00 · checkout desde 5:00","c":"Pastel de feira, caldo de cana","t":"Memorial da América Latina a 5 min de tu puerta · el Minhocão cierra a autos al atardecer"}},{"i":2,"f":1,"fe":"Mar 18 ago","lug":"Madrid","panel":"map1","c":0,"nn":"1/1","nota":"CA898 llega 23:50 · dormí junto a Atocha","ms":[],"cap":55,"co":"ES","b":"CA898","g":{"d":"Hostel junto a Atocha, €30–45 (NO Barajas)","c":"Nada: dormís 3,5h","t":"El Ouigo sale de Atocha 06:22"}},{"i":3,"f":1,"fe":"Mié 19 ago","lug":"Toulouse","panel":"map1","c":1,"nn":"1/4","nota":"19: Ouigo+FlixBus · 20: MOBY · 21: Albi · 22: Carcassonne","ms":[],"cap":80,"co":"FR","b":"TRIPLE TRANSPORTE","g":{"d":"Auberge de Saint-Sernin, €25–30","c":"Cassoulet, mercado Victor Hugo","t":"La 'ville rose' al atardecer es Portra puro"}},{"i":4,"f":1,"fe":"Jue 20 ago","lug":"Toulouse","panel":"map1","c":1,"nn":"2/4","nota":"19: Ouigo+FlixBus · 20: MOBY · 21: Albi · 22: Carcassonne","ms":[],"cap":80,"co":"FR","b":"MOBY","g":{"d":"Auberge de Saint-Sernin, €25–30","c":"Cassoulet, mercado Victor Hugo","t":"La 'ville rose' al atardecer es Portra puro"}},{"i":5,"f":1,"fe":"Vie 21 ago","lug":"Toulouse","panel":"map1","c":1,"nn":"3/4","nota":"19: Ouigo+FlixBus · 20: MOBY · 21: Albi · 22: Carcassonne","ms":[],"cap":80,"co":"FR","g":{"d":"Auberge de Saint-Sernin, €25–30","c":"Cassoulet, mercado Victor Hugo","t":"La 'ville rose' al atardecer es Portra puro"}},{"i":6,"f":1,"fe":"Sáb 22 ago","lug":"Toulouse","panel":"map1","c":1,"nn":"4/4","nota":"19: Ouigo+FlixBus · 20: MOBY · 21: Albi · 22: Carcassonne","ms":[],"cap":80,"co":"FR","g":{"d":"Auberge de Saint-Sernin, €25–30","c":"Cassoulet, mercado Victor Hugo","t":"La 'ville rose' al atardecer es Portra puro"}},{"i":7,"f":1,"fe":"Dom 23 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"1/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":80,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":8,"f":1,"fe":"Lun 24 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"2/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":78,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":9,"f":1,"fe":"Mar 25 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"3/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":78,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":10,"f":1,"fe":"Mié 26 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"4/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":78,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":11,"f":1,"fe":"Jue 27 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"5/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":75,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":12,"f":1,"fe":"Vie 28 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"6/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":78,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":13,"f":1,"fe":"Sáb 29 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"7/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":110,"co":"ES","b":"LA BODA","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":14,"f":1,"fe":"Dom 30 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"8/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":75,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":15,"f":1,"fe":"Lun 31 ago","lug":"Barcelona","panel":"map1","c":2,"nn":"9/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":78,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":16,"f":1,"fe":"Mar 1 sep","lug":"Barcelona","panel":"map1","c":2,"nn":"10/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":75,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":17,"f":1,"fe":"Mié 2 sep","lug":"Barcelona","panel":"map1","c":2,"nn":"11/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":75,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":18,"f":1,"fe":"Jue 3 sep","lug":"Barcelona","panel":"map1","c":2,"nn":"12/12","nota":"Boda de Felicitas sáb 29 · BCN_12 · Festa Major de Sants","ms":[],"cap":75,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":19,"f":1,"fe":"Vie 4 sep","lug":"París","panel":"map1","c":3,"nn":"1/5","nota":"1.500+ invaders · Design Week · Versalles/Fontainebleau","ms":[],"cap":95,"co":"FR","g":{"d":"3 Ducks o Generator, €38–45","c":"Quatrehomme, L'As du Fallafel","t":"Película en Nation Photo — más barato que cargar stock"}},{"i":20,"f":1,"fe":"Sáb 5 sep","lug":"París","panel":"map1","c":3,"nn":"2/5","nota":"1.500+ invaders · Design Week · Versalles/Fontainebleau","ms":[],"cap":95,"co":"FR","g":{"d":"3 Ducks o Generator, €38–45","c":"Quatrehomme, L'As du Fallafel","t":"Película en Nation Photo — más barato que cargar stock"}},{"i":21,"f":1,"fe":"Dom 6 sep","lug":"París","panel":"map1","c":3,"nn":"3/5","nota":"1.500+ invaders · Design Week · Versalles/Fontainebleau","ms":[],"cap":95,"co":"FR","g":{"d":"3 Ducks o Generator, €38–45","c":"Quatrehomme, L'As du Fallafel","t":"Película en Nation Photo — más barato que cargar stock"}},{"i":22,"f":1,"fe":"Lun 7 sep","lug":"París","panel":"map1","c":3,"nn":"4/5","nota":"1.500+ invaders · Design Week · Versalles/Fontainebleau","ms":[],"cap":95,"co":"FR","g":{"d":"3 Ducks o Generator, €38–45","c":"Quatrehomme, L'As du Fallafel","t":"Película en Nation Photo — más barato que cargar stock"}},{"i":23,"f":1,"fe":"Mar 8 sep","lug":"París","panel":"map1","c":3,"nn":"5/5","nota":"1.500+ invaders · Design Week · Versalles/Fontainebleau","ms":[],"cap":95,"co":"FR","g":{"d":"3 Ducks o Generator, €38–45","c":"Quatrehomme, L'As du Fallafel","t":"Película en Nation Photo — más barato que cargar stock"}},{"i":24,"f":1,"fe":"Mié 9 sep","lug":"Honfleur","panel":"map1","c":4,"nn":"1/2","nota":"Étretat · quesos AOP normandos","ms":[],"cap":85,"co":"FR","g":{"d":"Ibis Budget, €45–55","c":"Moules, sidra, Camembert","t":"El Vieux Bassin a primera hora, sin gente"}},{"i":25,"f":1,"fe":"Jue 10 sep","lug":"Honfleur","panel":"map1","c":4,"nn":"2/2","nota":"Étretat · quesos AOP normandos","ms":[],"cap":85,"co":"FR","g":{"d":"Ibis Budget, €45–55","c":"Moules, sidra, Camembert","t":"El Vieux Bassin a primera hora, sin gente"}},{"i":26,"f":1,"fe":"Vie 11 sep","lug":"Mont Saint-Michel","panel":"map1","c":5,"nn":"1/1","nota":"dormís al pie · mareas · alba solo","ms":[],"cap":100,"co":"FR","g":{"d":"La Caserne (Hôtel Vert), €70–85 — excepción","c":"Galettes","t":"Pasarela a pie 1h antes del atardecer; volvé al alba"}},{"i":27,"f":1,"fe":"Sáb 12 sep","lug":"Saint-Malo","panel":"map1","c":6,"nn":"1/2","nota":"mercado sáb · ostras en Cancale","ms":[],"cap":85,"co":"FR","g":{"d":"Auberge HI Patrick Varangot, €25–30","c":"Ostras en Cancale, kouign-amann","t":"Sábado: mercado · marea alta = olas contra la muralla"}},{"i":28,"f":1,"fe":"Dom 13 sep","lug":"Saint-Malo","panel":"map1","c":6,"nn":"2/2","nota":"mercado sáb · ostras en Cancale","ms":[],"cap":85,"co":"FR","g":{"d":"Auberge HI Patrick Varangot, €25–30","c":"Ostras en Cancale, kouign-amann","t":"Sábado: mercado · marea alta = olas contra la muralla"}},{"i":29,"f":1,"fe":"Lun 14 sep","lug":"Bordeaux","panel":"map1","c":7,"nn":"1/1","nota":"escala invader en Rennes · vendimia","ms":[],"cap":85,"co":"FR","g":{"d":"Central Hostel, €30–40","c":"Canelés, entrecôte à la bordelaise","t":"Septiembre = vendimia en su pico"}},{"i":30,"f":1,"fe":"Mar 15 sep","lug":"Sarlat / Dordoña","panel":"map1","c":8,"nn":"1/3","nota":"mercado mié · canoa por el río","ms":[],"cap":82,"co":"FR","g":{"d":"Chambre d'hôtes casco viejo, €40–50","c":"Foie, pommes sarladaises, nueces","t":"Mercado miércoles · la canoa ES el transporte"}},{"i":31,"f":1,"fe":"Mié 16 sep","lug":"Sarlat / Dordoña","panel":"map1","c":8,"nn":"2/3","nota":"mercado mié · canoa por el río","ms":[],"cap":85,"co":"FR","g":{"d":"Chambre d'hôtes casco viejo, €40–50","c":"Foie, pommes sarladaises, nueces","t":"Mercado miércoles · la canoa ES el transporte"}},{"i":32,"f":1,"fe":"Jue 17 sep","lug":"Sarlat / Dordoña","panel":"map1","c":8,"nn":"3/3","nota":"mercado mié · canoa por el río","ms":[],"cap":85,"co":"FR","g":{"d":"Chambre d'hôtes casco viejo, €40–50","c":"Foie, pommes sarladaises, nueces","t":"Mercado miércoles · la canoa ES el transporte"}},{"i":33,"f":2,"fe":"Vie 18 sep","lug":"Montpellier","panel":"map2","c":9,"nn":"1/2","nota":"Journées du Patrimoine 19–20","ms":[],"cap":80,"co":"FR","g":{"d":"Hostel del Écusson, €25–35","c":"Tielle sétoise, pélardon","t":"Patrimoine 19–20: monumentos gratis"}},{"i":34,"f":2,"fe":"Sáb 19 sep","lug":"Montpellier","panel":"map2","c":9,"nn":"2/2","nota":"Journées du Patrimoine 19–20","ms":[],"cap":82,"co":"FR","g":{"d":"Hostel del Écusson, €25–35","c":"Tielle sétoise, pélardon","t":"Patrimoine 19–20: monumentos gratis"}},{"i":35,"f":2,"fe":"Dom 20 sep","lug":"Nîmes","panel":"map2","c":23,"nn":"1/1","nota":"la Roma francesa · Patrimoine","ms":[],"cap":80,"co":"FR","g":{"d":"Hostel cerca de la arena, €30–40","c":"Brandade de morue","t":"Arena + Maison Carrée con acceso Patrimoine"}},{"i":36,"f":2,"fe":"Lun 21 sep","lug":"Aviñón","panel":"map2","c":10,"nn":"1/2","nota":"medio día Arles · Palais des Papes","ms":[],"cap":82,"co":"FR","g":{"d":"Hostel intramuros, €30–40","c":"Mercado Les Halles (cierra lunes)","t":"Pont du Gard opcional en bus desde Nîmes"}},{"i":37,"f":2,"fe":"Mar 22 sep","lug":"Aviñón","panel":"map2","c":10,"nn":"2/2","nota":"medio día Arles · Palais des Papes","ms":[],"cap":88,"co":"FR","g":{"d":"Hostel intramuros, €30–40","c":"Mercado Les Halles (cierra lunes)","t":"Pont du Gard opcional en bus desde Nîmes"}},{"i":38,"f":2,"fe":"Mié 23 sep","lug":"Marsella","panel":"map2","c":11,"nn":"1/4","nota":"~100 invaders · calanques · Cours Julien","ms":[],"cap":85,"co":"FR","g":{"d":"Vertigo Vieux-Port, €28–38","c":"Chez Étienne, panisses","t":"Sugiton a pie · Le Panier + Cours Julien"}},{"i":39,"f":2,"fe":"Jue 24 sep","lug":"Marsella","panel":"map2","c":11,"nn":"2/4","nota":"~100 invaders · calanques · Cours Julien","ms":[],"cap":85,"co":"FR","g":{"d":"Vertigo Vieux-Port, €28–38","c":"Chez Étienne, panisses","t":"Sugiton a pie · Le Panier + Cours Julien"}},{"i":40,"f":2,"fe":"Vie 25 sep","lug":"Marsella","panel":"map2","c":11,"nn":"3/4","nota":"~100 invaders · calanques · Cours Julien","ms":[],"cap":85,"co":"FR","g":{"d":"Vertigo Vieux-Port, €28–38","c":"Chez Étienne, panisses","t":"Sugiton a pie · Le Panier + Cours Julien"}},{"i":41,"f":2,"fe":"Sáb 26 sep","lug":"Marsella","panel":"map2","c":11,"nn":"4/4","nota":"~100 invaders · calanques · Cours Julien","ms":[],"cap":85,"co":"FR","g":{"d":"Vertigo Vieux-Port, €28–38","c":"Chez Étienne, panisses","t":"Sugiton a pie · Le Panier + Cours Julien"}},{"i":42,"f":2,"fe":"Dom 27 sep","lug":"Antibes","panel":"map2","c":12,"nn":"1/2","nota":"Cannes · museo Picasso","ms":[],"cap":82,"co":"FR","g":{"d":"The Crew House, €30–40","c":"Socca, mercado provenzal","t":"Hostel de marineros: buenas historias"}},{"i":43,"f":2,"fe":"Lun 28 sep","lug":"Antibes","panel":"map2","c":12,"nn":"2/2","nota":"Cannes · museo Picasso","ms":[],"cap":90,"co":"FR","g":{"d":"The Crew House, €30–40","c":"Socca, mercado provenzal","t":"Hostel de marineros: buenas historias"}},{"i":44,"f":2,"fe":"Mar 29 sep","lug":"Niza","panel":"map2","c":13,"nn":"1/5","nota":"CUMPLE LAURIE vie 2–sáb 3 · Menton/Èze","ms":[],"cap":90,"co":"FR","g":{"d":"Villa Saint-Exupéry Beach, €32–45 — reservá YA","c":"Socca de Chez Pipo, pan bagnat","t":"Cumple Laurie · salís dom 4 a Tende"}},{"i":45,"f":2,"fe":"Mié 30 sep","lug":"Niza","panel":"map2","c":13,"nn":"2/5","nota":"CUMPLE LAURIE vie 2–sáb 3 · Menton/Èze","ms":[],"cap":88,"co":"FR","g":{"d":"Villa Saint-Exupéry Beach, €32–45 — reservá YA","c":"Socca de Chez Pipo, pan bagnat","t":"Cumple Laurie · salís dom 4 a Tende"}},{"i":46,"f":2,"fe":"Jue 1 oct","lug":"Niza","panel":"map2","c":13,"nn":"3/5","nota":"CUMPLE LAURIE vie 2–sáb 3 · Menton/Èze","ms":[],"cap":88,"co":"FR","g":{"d":"Villa Saint-Exupéry Beach, €32–45 — reservá YA","c":"Socca de Chez Pipo, pan bagnat","t":"Cumple Laurie · salís dom 4 a Tende"}},{"i":47,"f":2,"fe":"Vie 2 oct","lug":"Niza","panel":"map2","c":13,"nn":"4/5","nota":"CUMPLE LAURIE vie 2–sáb 3 · Menton/Èze","ms":[],"cap":100,"co":"FR","b":"CUMPLE DE LAURIE · I","g":{"d":"Villa Saint-Exupéry Beach, €32–45 — reservá YA","c":"Socca de Chez Pipo, pan bagnat","t":"Cumple Laurie · salís dom 4 a Tende"}},{"i":48,"f":2,"fe":"Sáb 3 oct","lug":"Niza","panel":"map2","c":13,"nn":"5/5","nota":"CUMPLE LAURIE vie 2–sáb 3 · Menton/Èze","ms":[],"cap":95,"co":"FR","b":"CUMPLE DE LAURIE · II","g":{"d":"Villa Saint-Exupéry Beach, €32–45 — reservá YA","c":"Socca de Chez Pipo, pan bagnat","t":"Cumple Laurie · salís dom 4 a Tende"}},{"i":49,"f":2,"fe":"Dom 4 oct","lug":"Tende (Roya)","panel":"map2","c":24,"nn":"1/1","nota":"VÍA FERRATA Voie des Hérétiques · Train des Merveilles","ms":[],"cap":90,"co":"FR","b":"VÍA FERRATA — JEFE FINAL DE FRANCIA","g":{"d":"Hôtel/gîte del pueblo, €45–60 — poca oferta","c":"Polenta, quesos de la Roya","t":"Equipo de VF: alquilalo en Niza · mirá el clima"}},{"i":50,"f":3,"fe":"Lun 5 oct","lug":"Cinque Terre","panel":"map3","c":14,"nn":"1/2","nota":"caminata Monterosso→Riomaggiore","ms":[],"cap":80,"co":"IT","g":{"d":"Dorm Monterosso €35–50 (o La Spezia €25–35)","c":"Pesto, focaccia, anchoas","t":"Caminata 8am: luz + menos gente · CT Card €7,50"}},{"i":51,"f":3,"fe":"Mar 6 oct","lug":"Cinque Terre","panel":"map3","c":14,"nn":"2/2","nota":"caminata Monterosso→Riomaggiore","ms":[],"cap":90,"co":"IT","g":{"d":"Dorm Monterosso €35–50 (o La Spezia €25–35)","c":"Pesto, focaccia, anchoas","t":"Caminata 8am: luz + menos gente · CT Card €7,50"}},{"i":52,"f":3,"fe":"Mié 7 oct","lug":"Rávena","panel":"map3","c":15,"nn":"1/1","nota":"PISA 4h en ruta: Tuttomondo · mosaicos","ms":[],"cap":88,"co":"IT","g":{"d":"B&B céntrico, €35–45","c":"Piadina romagnola","t":"Mosaicos cierran ~19h: llegá antes de las 16"}},{"i":53,"f":3,"fe":"Jue 8 oct","lug":"Ferry Ancona→Split","panel":"map3","c":16,"nn":"1/1","nota":"noche a bordo · Jadrolinija 19:45","ms":[],"cap":90,"co":"IT","b":"PISA EXPRÉS + EL FERRY","g":{"d":"Butaca del ferry €55–70 (cabina +€30)","c":"Cena a bordo o comprá antes","t":"Check-in 2h antes · verificá el día exacto"}},{"i":54,"f":3,"fe":"Vie 9 oct","lug":"Split","panel":"map3","c":17,"nn":"1/3","nota":"Diocleciano al alba · Trogir","ms":[],"cap":70,"co":"HR","g":{"d":"Dorm casco antiguo, €18–25","c":"Pašticada, sardinas","t":"El palacio a las 6:30am: pasillos romanos vacíos"}},{"i":55,"f":3,"fe":"Sáb 10 oct","lug":"Split","panel":"map3","c":17,"nn":"2/3","nota":"Diocleciano al alba · Trogir","ms":[],"cap":70,"co":"HR","g":{"d":"Dorm casco antiguo, €18–25","c":"Pašticada, sardinas","t":"El palacio a las 6:30am: pasillos romanos vacíos"}},{"i":56,"f":3,"fe":"Dom 11 oct","lug":"Split","panel":"map3","c":17,"nn":"3/3","nota":"Diocleciano al alba · Trogir","ms":[],"cap":70,"co":"HR","g":{"d":"Dorm casco antiguo, €18–25","c":"Pašticada, sardinas","t":"El palacio a las 6:30am: pasillos romanos vacíos"}},{"i":57,"f":3,"fe":"Lun 12 oct","lug":"Mostar","panel":"map3","c":18,"nn":"1/1","nota":"Grude+Kravice en ruta · Stari Most","ms":[],"cap":55,"co":"BA","b":"GRUDE RUN","g":{"d":"Hostel Miran, €12–16","c":"Ćevapi, burek","t":"Stari Most de noche · Blagaj al alba"}},{"i":58,"f":3,"fe":"Mar 13 oct","lug":"Sarajevo","panel":"map3","c":19,"nn":"1/4","nota":"bobsled olímpico · Túnel de la Esperanza","ms":[],"cap":50,"co":"BA","g":{"d":"Hostel Franz Ferdinand, €13–18","c":"Ćevapi en Željo, café bosnio","t":"El bobsled se camina 1h: subí con tiempo"}},{"i":59,"f":3,"fe":"Mié 14 oct","lug":"Sarajevo","panel":"map3","c":19,"nn":"2/4","nota":"bobsled olímpico · Túnel de la Esperanza","ms":[],"cap":50,"co":"BA","g":{"d":"Hostel Franz Ferdinand, €13–18","c":"Ćevapi en Željo, café bosnio","t":"El bobsled se camina 1h: subí con tiempo"}},{"i":60,"f":3,"fe":"Jue 15 oct","lug":"Sarajevo","panel":"map3","c":19,"nn":"3/4","nota":"bobsled olímpico · Túnel de la Esperanza","ms":[],"cap":50,"co":"BA","g":{"d":"Hostel Franz Ferdinand, €13–18","c":"Ćevapi en Željo, café bosnio","t":"El bobsled se camina 1h: subí con tiempo"}},{"i":61,"f":3,"fe":"Vie 16 oct","lug":"Sarajevo","panel":"map3","c":19,"nn":"4/4","nota":"bobsled olímpico · Túnel de la Esperanza","ms":[],"cap":50,"co":"BA","g":{"d":"Hostel Franz Ferdinand, €13–18","c":"Ćevapi en Željo, café bosnio","t":"El bobsled se camina 1h: subí con tiempo"}},{"i":62,"f":3,"fe":"Sáb 17 oct","lug":"Belgrado","panel":"map3","c":20,"nn":"1/3","nota":"splavovi · Novi Sad · street art","ms":[],"cap":48,"co":"RS","g":{"d":"Hedonist Hostel (Skadarlija), €12–18","c":"Pljeskavica, kajmak","t":"Splavovi jue–dom desde medianoche · efectivo"}},{"i":63,"f":3,"fe":"Dom 18 oct","lug":"Belgrado","panel":"map3","c":20,"nn":"2/3","nota":"splavovi · Novi Sad · street art","ms":[],"cap":50,"co":"RS","g":{"d":"Hedonist Hostel (Skadarlija), €12–18","c":"Pljeskavica, kajmak","t":"Splavovi jue–dom desde medianoche · efectivo"}},{"i":64,"f":3,"fe":"Lun 19 oct","lug":"Belgrado","panel":"map3","c":20,"nn":"3/3","nota":"splavovi · Novi Sad · street art","ms":[],"cap":48,"co":"RS","g":{"d":"Hedonist Hostel (Skadarlija), €12–18","c":"Pljeskavica, kajmak","t":"Splavovi jue–dom desde medianoche · efectivo"}},{"i":65,"f":3,"fe":"Mar 20 oct","lug":"Barcelona (tránsito)","panel":"map3","c":2,"nn":"1/1","nota":"vuelo desde Belgrado · último vermut","ms":[],"cap":78,"co":"ES","g":{"d":"Yeah/Sant Jordi €35–50 · con amigos: –$520","c":"Vermut + bombas en La Cova Fumada","t":"BCN_12 con tu hermano · bunkers del Carmel"}},{"i":66,"f":4,"fe":"Mié 21 oct","lug":"Boston","panel":"map4","c":0,"nn":"1/2","nota":"Level llega por la tarde · Freedom Trail · North End","ms":[],"cap":145,"co":"US","b":"EL TRANSATLÁNTICO","g":{"d":"HI Boston (Booking), $55–70","c":"Clam chowder, cannoli en Mike's","t":"Caés del avión: día 1 tranquilo · foliage pico"}},{"i":67,"f":4,"fe":"Jue 22 oct","lug":"Boston","panel":"map4","c":0,"nn":"2/2","nota":"Level llega por la tarde · Freedom Trail · North End","ms":[],"cap":145,"co":"US","g":{"d":"HI Boston (Booking), $55–70","c":"Clam chowder, cannoli en Mike's","t":"Caés del avión: día 1 tranquilo · foliage pico"}},{"i":68,"f":4,"fe":"Vie 23 oct","lug":"Boston","panel":"map4","c":1,"nn":"1/5","nota":"219 instalados (no todos viven) · Bushwick · B&H","ms":[],"cap":150,"co":"US","g":{"d":"HI NYC Upper West (Booking), $60–75","c":"Slice, bagels, Flushing","t":"B&H cierra vie tarde y sábado"},"b":"LA ENTREGA FINAL E·CO"},{"i":69,"f":4,"fe":"Sáb 24 oct","lug":"Nueva York","panel":"map4","c":1,"nn":"2/5","nota":"219 instalados (no todos viven) · Bushwick · B&H","ms":[],"cap":150,"co":"US","g":{"d":"HI NYC Upper West (Booking), $60–75","c":"Slice, bagels, Flushing","t":"B&H cierra vie tarde y sábado"}},{"i":70,"f":4,"fe":"Dom 25 oct","lug":"Nueva York","panel":"map4","c":1,"nn":"3/5","nota":"219 instalados (no todos viven) · Bushwick · B&H","ms":[],"cap":145,"co":"US","g":{"d":"HI NYC Upper West (Booking), $60–75","c":"Slice, bagels, Flushing","t":"B&H cierra vie tarde y sábado"}},{"i":71,"f":4,"fe":"Lun 26 oct","lug":"Nueva York","panel":"map4","c":1,"nn":"4/5","nota":"219 instalados (no todos viven) · Bushwick · B&H","ms":[],"cap":145,"co":"US","g":{"d":"HI NYC Upper West (Booking), $60–75","c":"Slice, bagels, Flushing","t":"B&H cierra vie tarde y sábado"}},{"i":72,"f":4,"fe":"Mar 27 oct","lug":"Nueva York","panel":"map4","c":1,"nn":"5/5","nota":"219 instalados (no todos viven) · Bushwick · B&H","ms":[],"cap":140,"co":"US","g":{"d":"HI NYC Upper West (Booking), $60–75","c":"Slice, bagels, Flushing","t":"B&H cierra vie tarde y sábado"}},{"i":73,"f":4,"fe":"Mié 28 oct","lug":"Maryland / DC","panel":"map4","c":3,"nn":"1/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":140,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":74,"f":4,"fe":"Jue 29 oct","lug":"Filadelfia / DC","panel":"map4","c":3,"nn":"2/15","nota":"NYC→Filadelfia→DC · We The Youth de Haring cierra el arco que abriste en Pisa","ms":[],"cap":65,"co":"US","g":{"d":"Donde los primos, Maryland","c":"Cheesesteak en Philly: Pat's, Geno's o Jim's","t":"Checkout 11:00 · bus a Philly ~2h · tarde en Point Breeze · bus a DC ~3h"},"b":"EL ARCO HARING"},{"i":75,"f":4,"fe":"Vie 30 oct","lug":"Maryland / DC","panel":"map4","c":3,"nn":"3/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":76,"f":4,"fe":"Sáb 31 oct","lug":"Maryland / DC","panel":"map4","c":3,"nn":"4/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":75,"co":"US","b":"HALLOWEEN","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":77,"f":4,"fe":"Dom 1 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"5/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"},"b":"LA DIÁSPORA"},{"i":78,"f":4,"fe":"Lun 2 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"6/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":79,"f":4,"fe":"Mar 3 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"7/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":70,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":80,"f":4,"fe":"Mié 4 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"8/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":81,"f":4,"fe":"Jue 5 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"9/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":82,"f":4,"fe":"Vie 6 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"10/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":83,"f":4,"fe":"Sáb 7 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"11/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":84,"f":4,"fe":"Dom 8 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"12/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":85,"f":4,"fe":"Lun 9 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"13/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":86,"f":4,"fe":"Mar 10 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"14/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":87,"f":4,"fe":"Mié 11 nov","lug":"Maryland / DC","panel":"map4","c":3,"nn":"15/15","nota":"día 1: Philly-Haring · 31 oct: Halloween · Smithsonians","ms":[],"cap":65,"co":"US","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":88,"f":4,"fe":"Jue 12 nov","lug":"Vuelo DCA→LPB","panel":"map4","c":3,"nn":"1/1","nota":"noche a bordo · DCA→MIA→VVI→LPB","ms":[],"cap":145,"co":"US","b":"EL RETORNO — JEFE FINAL","g":{"d":"Primos — gratis","c":"Blue crabs con Old Bay","t":"El descanso largo: editá, escaneá, armá el fotolibro"}},{"i":89,"f":0,"fe":"Vie 13 nov","lug":"La Paz — llegaste","panel":"map0","c":0,"nn":"—","nota":"06:25 · 88 noches · 9 países · el proyecto se cierra en casa","ms":[],"cap":0,"b":"GAME COMPLETE","co":"BO","g":{"d":"Tu cama, La Paz","c":"Salteña de verdad, en tu ciudad","t":"Aterrizás 06:25. El rollo final se cierra en casa"}}];
 const TL=[{"f":0,"d":2,"s":0},{"f":1,"d":31,"s":2},{"f":2,"d":17,"s":33},{"f":3,"d":16,"s":50},{"f":4,"d":24,"s":66}];
 const LOCKER=[{"id": "boina", "name": "Boina de fotógrafo", "slot": "head", "at": 2, "desc": "El clásico. La gorra del flâneur."}, {"id": "compacta", "name": "Point-and-shoot", "slot": "cam", "at": 3, "desc": "Cámara de bolsillo para la calle."}, {"id": "chaleco", "name": "Chaleco de fotógrafo", "slot": "body", "at": 6, "desc": "Mil bolsillos para el rollo."}, {"id": "bufanda", "name": "Pañuelo naranja", "slot": "body", "at": 9, "desc": "Tu color en el cuello."}, {"id": "telemetrica", "name": "Telemétrica (punto rojo)", "slot": "cam", "at": 12, "desc": "La Leica del alma. Discreta y letal."}, {"id": "gorro", "name": "Gorro de lana", "slot": "head", "at": 16, "desc": "Para los albas fríos de Normandía."}, {"id": "camposol", "name": "Chaqueta de campo", "slot": "body", "at": 22, "desc": "Para la Dordoña y los mercados."}, {"id": "casco", "name": "Casco de vía ferrata", "slot": "head", "at": 30, "desc": "Ganado en la pared sobre Tende."}, {"id": "sombrero", "name": "Sombrero de ala", "slot": "head", "at": 40, "desc": "Sol de los Balcanes y del sur."}, {"id": "poncho", "name": "Poncho andino", "slot": "body", "at": 52, "desc": "La raíz que viaja con vos."}, {"id": "medioformato", "name": "Cámara medio formato", "slot": "cam", "at": 64, "desc": "El negativo grande para las claves."}, {"id": "leyenda", "name": "Aura de LEYENDA", "slot": "head", "at": 78, "desc": "78 días en presupuesto. Respeto."}];
 const CAT={"proyecto": ["📷", "#E8500F", "PROYECTO · DE ALGÚN LADO"], "pasos": ["🚶", "#6FCF97", "PASOS DEL DÍA"], "lugar": ["📍", "#F2994A", "LUGAR A VISITAR"], "hacer": ["✅", "#56CCF2", "COSA POR HACER"], "personal": ["★", "#EFC14E", "PERSONAL · NO DESAPROVECHAR"], "invader": ["👾", "#8CC78C", "INVADERS"], "logistica": ["⚑", "#8A9099", "EVENTO FIJO"], "fu": ["💗", "#E86AA6", "FÁTIMA · A LA DISTANCIA"], "qhipa": ["🌀", "#E63329", "QHIPA · E·CO/26"], "viaje": ["✈️", "#9FB4C7", "EN TRÁNSITO"]};
@@ -1567,7 +1769,7 @@ const CO_META={BR:["BRASIL",0],ES:["ESPAÑA",1],FR:["FRANCIA",2],IT:["ITALIA",3]
  HR:["CROACIA",3],BA:["BOSNIA",3],RS:["SERBIA",3],US:["EEUU",4],BO:["BOLIVIA",0]};
 const CO_ORDER=["BR","ES","FR","IT","HR","BA","RS","US","BO"];
 const RANKS=[[0,"TURISTA"],[1300,"VIAJERO"],[3100,"CAZADOR"],[5350,"FLÂNEUR"],[6400,"LEYENDA"]];
-let cur=0,lastPanel=null,checked={},gastos={},cerrado={},libreta={},equip={head:null,body:null,cam:null},
+let cur=0,lastPanel=null,checked={},gastos={},cerrado={},libreta={},equip={head:null,body:null,cam:null},rolls=[],curRoll=-1,
     timer=null,konami=false,prevDone=0,prevUnl=0,prevStampSet=new Set();
 const $=id=>document.getElementById(id);
 // índices precomputados
@@ -1619,7 +1821,7 @@ const SFX={
  pack:()=>beep([[523,.04,"triangle",.032],[784,.06,"triangle",.032]])};  // equipaje/día0
 $("sfx").addEventListener("click",()=>{sfxOn=!sfxOn;$("sfx").textContent=sfxOn?"🔊":"🔇";autosave();if(sfxOn)SFX.check();});
 $("crt").addEventListener("click",()=>{document.body.classList.toggle("nocrt");autosave();});
-function toast(msg){const t=document.createElement("div");t.className="toast";t.textContent=msg;
+function toast(msg,kind){const t=document.createElement("div");t.className="toast"+(kind?" "+kind:"");t.textContent=msg;
  $("toasts").appendChild(t);setTimeout(()=>t.remove(),2700);}
 // ---- sprite ----
 function spriteSVG(eq,cell){
@@ -1782,7 +1984,7 @@ function repaintChar(){
 const wbox=$("worlds");
 TL.forEach(w=>{
  const row=document.createElement("div");row.className="wrow";
- row.innerHTML='<div class="wlab px">M'+w.f+" "+WPAL[w.f][0]+"</div>";
+ row.innerHTML='<div class="wlab px">M'+w.f+" "+WPAL[w.f][0]+' <span class="wdone" id="wd-'+w.f+'"></span></div>';
  const t=document.createElement("div");t.className="tiles";
  for(let d=w.s;d<w.s+w.d;d++){
   const lv=lvOf(d);const el=document.createElement("div");
@@ -1842,11 +2044,12 @@ function render(userAction){
  $("lv-nota").textContent=lv.nota;
  $("bud-cap").textContent="$"+lv.cap;
  const ds=dSum(cur);$("bud-sum").textContent=fmt(ds);
+ $("bud-sum").className=lv.cap>0?(ds>lv.cap?"bsm err":(ds>=lv.cap*0.8?"bsm warn":"bsm ok")):"bsm";
  const bc=$("bud-close");const cdia=!!cerrado[cur];
  bc.textContent=cdia?"REABRIR":"FINALIZAR DÍA";
  bc.classList.toggle("over",cdia&&ds>lv.cap);
  $("bud-state").textContent=cdia?(ds<=lv.cap?("CERRADO ✓ "+fmt(ds)+" ≤ $"+lv.cap):("CERRADO ✗ "+fmt(ds)+" > $"+lv.cap))
-  :"día abierto · techo = cama+comida+transporte (sin vuelos)";
+  :"día abierto · techo: cama+comida+transporte, sin vuelos";
  $("bud-form").style.display=cdia?"none":"flex";
  const lc=localCur(cur);
  $("g-mon").innerHTML=Object.keys(MON).map(c=>'<option value="'+c+'">'+c+' '+symOf(c)+'</option>').join("");
@@ -1938,9 +2141,11 @@ $("g-monto").addEventListener("keydown",e=>{if(e.key==="Enter")$("g-add").click(
 $("bud-close").addEventListener("click",()=>{
  if(cerrado[cur]){cerrado[cur]=false;SFX.un();render(false);return;}
  cerrado[cur]=true;const sm=dSum(cur),cap=lvOf(cur).cap;
- if(sm<=cap){SFX.coin();toast("DÍA "+cur+" EN PRESUPUESTO: "+fmt(sm)+" ≤ $"+cap);
-  if(sm===cap&&cap>0&&window.EGG)EGG("contador","AL CENTAVO EXACTO. Esto no es suerte: es deformación profesional. Cason estaría orgulloso.");}
- else{SFX.over();toast("DÍA "+cur+" PASADO: "+fmt(sm)+" > $"+cap);}
+ if(sm<=cap){SFX.coin();toast("DÍA "+cur+" EN PRESUPUESTO: "+fmt(sm)+" ≤ $"+cap,"ok");
+  if(sm===cap&&cap>0&&window.EGG)EGG("contador","AL CENTAVO EXACTO. Esto no es suerte: es deformación profesional. Cason estaría orgulloso.");
+  if(libreta[cur]&&libreta[cur].n){toast("✨ DÍA PERFECTO — techo OK + retrato ★","ok");if(window.eggRain)eggRain("✨","fall");}
+  if(window.worldDone){const _w=lvOf(cur).f;if(worldDone(_w)&&cur!==DAY_MAX)setTimeout(()=>showWorld(_w),900);}}
+ else{SFX.over();toast("DÍA "+cur+" PASADO: "+fmt(sm)+" > $"+cap,"err");}
  if(cur===DAY_MAX&&window.showFinal)setTimeout(showFinal,750);
  render(false);});
 $("g-list").addEventListener("click",e=>{
@@ -1977,11 +2182,29 @@ function openCap(d,mobj){capDay=d;
  const hint=(mobj&&mobj.desc)?mobj.desc:(typeof mobj==="string"?mobj:"");
  $("cap-hunt").textContent=hint;
  $("cap-n").value=L.n||"";$("cap-fam").value=L.fam||L.r||"";$("cap-es").value=L.es||"";
+ const cr=$("cap-roll");if(cr){const ref=(window.rollRefFor?rollRefFor(d):null);
+  if(ref){cr.textContent="📼 "+ref+" — quedará ligado a este retrato";cr.style.display="block";}
+  else cr.style.display="none";}
+ if(window.capExpoFill)capExpoFill(d);
+ {window.capPendGeo=(libreta[d]&&libreta[d].geo)||null;const gt=$("cap-gps-t"),gb=$("cap-gps");
+  if(gt){if(window.capPendGeo){gb.classList.add("has");gt.textContent="📍 "+capPendGeo.lat+", "+capPendGeo.lon;}
+   else{gb.classList.remove("has");gt.textContent="agregar ubicación GPS";}}}
  $("capmodal").style.display="flex";
  setTimeout(()=>$("cap-n").focus(),50);}
 function closeCap(){$("capmodal").style.display="none";capDay=null;}
-$("cap-save").addEventListener("click",()=>{
+$("cap-gps").addEventListener("click",()=>{
+  if(!navigator.geolocation){toast("Este navegador no da ubicación","err");return;}
+  $("cap-gps-t").textContent="ubicando…";
+  navigator.geolocation.getCurrentPosition(
+   p=>{window.capPendGeo={lat:+p.coords.latitude.toFixed(5),lon:+p.coords.longitude.toFixed(5)};
+    $("cap-gps").classList.add("has");$("cap-gps-t").textContent="📍 "+capPendGeo.lat+", "+capPendGeo.lon;SFX.check();},
+   e=>{$("cap-gps-t").textContent="agregar ubicación GPS";toast(e.code===1?"Permiso denegado":"No se pudo ubicar","err");},
+   {enableHighAccuracy:true,timeout:10000,maximumAge:60000});});
+ $("cap-save").addEventListener("click",()=>{
  libreta[capDay]={n:$("cap-n").value.trim(),fam:$("cap-fam").value.trim(),es:$("cap-es").value.trim()};
+ if(window.capPendGeo)libreta[capDay].geo=window.capPendGeo;
+ if(window.capExpoCommit)capExpoCommit(capDay);
+ if(window.rollRefFor){const _rr=rollRefFor(capDay);if(_rr)libreta[capDay].roll=_rr;}
  if(window.EGG&&/f[aá]tima/i.test($("cap-n").value)){EGG("fu","FU DETECTADA A 10.000 KM. El corazón no paga roaming.");if(window.eggRain)eggRain("💗","rise");}
  SFX.coin();closeCap();render(false);
  toast(libreta[cur]&&libreta[cur].n?"CAPTION GUARDADA":"CAPTION VACÍA — EDITÁ CON ✎");});
@@ -2017,6 +2240,9 @@ function recount(){
     if(m.p==="proyecto")mulXP[li]=(mulXP[li]||0)+m.x;}
    else all=false;});
   if(cerrado[li]){stamps.add(lv.co);if(lv.cap>0&&dSum(li)<=lv.cap)bud++;}
+  {const _pf=!!(cerrado[li]&&lv.cap>0&&dSum(li)<=lv.cap&&libreta[li]&&libreta[li].n);
+   if(ND&&ND.t&&ND.t[li])ND.t[li].classList.toggle("perfect",_pf);
+   if(ND&&ND.c&&ND.c[li])ND.c[li].classList.toggle("perf",_pf);}
   if(all)doneN++;
   const t=ND.t[li];if(t)t.classList.toggle("done",all);
   // film + sheet
@@ -2050,7 +2276,7 @@ function recount(){
  CO_ORDER.forEach(co=>{const el=$("st-"+co);const on=stamps.has(co);
   if(on){sn++;if(!prevStampSet.has(co))nuevos.push(co);
    if(!el.classList.contains("on")){el.classList.add("on");
-    const wi=CO_META[co][1];el.style.borderColor=WPAL[wi][1];el.style.color=WPAL[wi][1];}}});
+    const wi=CO_META[co][1];el.style.borderColor=WPAL[wi][1];el.classList.add("pop");setTimeout(()=>el.classList.remove("pop"),650);el.style.color=WPAL[wi][1];}}});
  if(nuevos.length){SFX.stamp();nuevos.forEach(co=>toast("SELLO: "+CO_META[co][0]));}
  prevStampSet=stamps;$("s-pass").textContent=sn+"/9";
  // niveles completados
@@ -2059,6 +2285,20 @@ function recount(){
  renderLocker(bud);
  updDayBadge();
  {const dc=$("d0-countdown"); if(dc)dc.style.display=(cur===0)?"block":"none";}
+ if(window.updRollBtn)updRollBtn();
+ {$("prev").disabled=(cur<=DAY_MIN);$("next").disabled=(cur>=DAY_MAX);}
+ {const _pt=document.querySelector(".tile.today");if(_pt)_pt.classList.remove("today");
+  const _td=window.todayDay?todayDay():null;
+  if(_td!==null&&ND&&ND.t&&ND.t[_td])ND.t[_td].classList.add("today");}
+ TL.forEach(w=>{const el=$("wd-"+w.f);if(!el)return;let c=0,t=0;
+  for(let d=w.s;d<w.s+w.d;d++){if(LV[d]&&LV[d].cap>0){t++;if(cerrado[d])c++;}}
+  el.textContent=c+"/"+t;el.classList.toggle("full",c===t&&t>0);});
+ {const rn=document.querySelector("#rk-name,#s-rank,.rankname");
+  if(rn){const RC={TURISTA:"#8B8378",VIAJERO:"#B2C489",CAZADOR:"#5FA8D3",FLÂNEUR:"#FFA028","LEYENDA":"#EFD000"};
+   const col=RC[(rn.textContent||"").trim()];if(col)rn.style.color=col;}}
+ if(window.updGuide)updGuide();
+ if(window.updStreak)updStreak();
+ if(window.updHoy)updHoy();
  if($("t-xp")){$("t-xp").textContent=$("s-xp").textContent;$("t-ret").textContent=$("fcount").textContent;$("t-inv").textContent=$("s-inv").textContent;}
  autosave();}
 
@@ -2217,11 +2457,12 @@ function applySnapshot(o){
  libreta=o.libreta||{};equip=o.equip||{head:null,body:null,cam:null};maleta=o.maleta||{};dia0=o.dia0||{};
  CATS_EXTRA=Array.isArray(o.cats)?o.cats:[];fillCats("");
  window.EGGS=o.eggs||{};window.PAPA_MODE=!!o.papa;
+ rolls=Array.isArray(o.rolls)?o.rolls:[];curRoll=(typeof o.curRoll==="number")?o.curRoll:-1;
  if(o.crt===false)document.body.classList.add("nocrt"); else document.body.classList.remove("nocrt");
  if(typeof o.sfx==="boolean"){sfxOn=o.sfx;$("sfx").textContent=sfxOn?"🔊":"🔇";}
  cur=(typeof o.cur==="number"&&o.cur>=DAY_MIN&&o.cur<=DAY_MAX)?o.cur:1;
  prevStampSet=new Set();prevDone=0;prevUnl=0;}
-function snapshot(){return JSON.stringify({v:4,cur:cur,checked:checked,gastos:gastos,
+function snapshot(){return JSON.stringify({v:5,rolls:rolls,curRoll:curRoll,cur:cur,checked:checked,gastos:gastos,
   cerrado:cerrado,libreta:libreta,equip:equip,maleta:maleta,dia0:dia0,cats:CATS_EXTRA,eggs:window.EGGS||{},papa:!!window.PAPA_MODE,crt:!document.body.classList.contains('nocrt'),sfx:sfxOn});}
 function download(name,txt,type){const a=document.createElement("a");
  a.href=URL.createObjectURL(new Blob([txt],{type:type}));a.download=name;a.click();
@@ -2237,10 +2478,16 @@ $("lb-caps").addEventListener("click",()=>{
  if(rows.length===1){toast("SIN RETRATOS NI CAPTIONS AÚN");return;}
  const csv=rows.map(r=>r.map(v=>('"'+String(v).replace(/"/g,'""')+'"')).join(",")).join("\n");
  SFX.csv();download("viaje2026-captions.csv","\ufeff"+csv,"text/csv");SFX.coin();toast("CAPTIONS EXPORTADAS");});
-$("lb-reset").addEventListener("click",()=>{
- if(!confirm("¿Borrar TODA la partida (misiones, gastos, captions, equipaje)? Bajate el .json antes si querés respaldo."))return;
+$("lb-reset").addEventListener("click",()=>{$("resetmodal").style.display="flex";});
+$("reset-cancel").addEventListener("click",()=>{$("resetmodal").style.display="none";});
+$("resetmodal").addEventListener("click",e=>{if(e.target.id==="resetmodal")$("resetmodal").style.display="none";});
+$("reset-confirm").addEventListener("click",()=>{
  try{localStorage.removeItem(LSKEY);}catch(e){}
- applySnapshot({});cur=0;repaintChar();render(false);SFX.erase();toast("PARTIDA BORRADA — DESDE CERO");});
+ applySnapshot({});cur=0;rolls=[];curRoll=-1;
+ repaintChar();render(false);
+ try{if(window.rollPaint)rollPaint();}catch(e){}
+ $("resetmodal").style.display="none";
+ SFX.erase();toast("TODO A CERO — los pasajes pagados se conservan","ok");});
 $("lb-save").addEventListener("click",()=>{
  SFX.save();download("viaje2026-partida.json",snapshot(),"application/json");toast("PARTIDA GUARDADA");});
 $("lb-load").addEventListener("click",()=>$("lb-file").click());
@@ -2253,7 +2500,7 @@ $("lb-file").addEventListener("change",e=>{
   e.target.value="";};rd.readAsText(f);});
 $("prev").addEventListener("click",()=>go(cur-1,true,true,"step"));
 $("next").addEventListener("click",()=>go(cur+1,true,true,"step"));
-$("tolocker").addEventListener("click",()=>$("locker").scrollIntoView({behavior:"smooth",block:"start"}));
+$("tolocker").addEventListener("click",()=>{goScreen("perfil",true);setTimeout(()=>{const l=$("locker");if(l)l.scrollIntoView({behavior:"smooth",block:"start"});},60);});
 $("now").addEventListener("click",()=>{
  const t0=new Date(2026,7,17,0,0,0);const now=new Date();
  if(now<t0){toast("EL JUEGO EMPIEZA EL 17 AGO — ESTÁS EN EL D0");go(0,true,true);return;}
@@ -2292,7 +2539,7 @@ const t0=new Date(2026,7,17,0,0,0);
 function cd(){const now=new Date();let ms=t0-now;const box=$("cd");
  const tcd=$("t-cd");
  const W=(a,b)=>{const html="<b>"+a+"</b><span>"+b+"</span>";box.innerHTML=html;if(tcd)tcd.innerHTML=html;
-  if(window.updRoute)updRoute(now);};
+  if(window.updRoute)updRoute(now);if(window.updHoy)updHoy();};
  if(ms<=0){const d2=new Date(2026,10,13,6,25,0);
   if(now<d2){const d=Math.floor((now-t0)/864e5)+1;
    W("NOW PLAYING","NIVEL "+d+" DE 89 · "+lvOf(Math.min(DAY_MAX,Math.max(1,d))).lug.toUpperCase());return;}
@@ -2352,6 +2599,257 @@ $("c-perT").textContent=TOT_PER;
    if(!t||!t.classList.contains("on"))return;
    fly.classList.remove("go");void fly.offsetWidth;fly.classList.add("go");},19000);}
 })();
+
+/* ═══════════ CUARTO OSCURO v2 ═══════════ */
+const SSV=["B","1s","1/2","1/4","1/8","1/15","1/30","1/60","1/125","1/250","1/500","1/1000"];
+const FV=["1.4","2","2.8","4","5.6","8","11","16","22"];
+const MMV=["52","200"];  // Konica AutoReflex P: Hexanon 52mm + 200mm
+const ASAV=[50,100,125,160,200,400,800,1600,3200];
+const STV=["Gold 200","ProImage 100","Portra 400","Portra 160","Ektar 100","Tri-X 400","HP5+ 400","UltraMax 400","Superia 400","CineStill 800T"];
+(function(){
+ let selSS=null,selF=null,selMM=null,selStock=null,selASA=null,expoOpen=false;
+ function rc(){return curRoll>=0?rolls[curRoll]:null;}
+
+ window.rollRefFor=function(d){
+  for(let ri=rolls.length-1;ri>=0;ri--){const r=rolls[ri];
+   for(let si=r.shots.length-1;si>=0;si--){if(r.shots[si].d===d&&r.shots[si].r)return "R"+r.n+"·"+(si+1);}}
+  return null;};
+ window.updRollBtn=function(){const b=$("toroll");if(!b)return;
+  const r=rc();b.textContent=r?("📼"+r.n+"·"+r.shots.length):"📼";};
+
+ function chips(el,vals,sel,cb){if(!el)return;el.innerHTML="";
+  vals.forEach(v=>{const c=document.createElement("button");c.type="button";
+   c.className="chip"+(String(v)===String(sel)?" on":"");c.textContent=v;
+   c.addEventListener("click",()=>cb(v));el.appendChild(c);});}
+
+ function syncExpo(){
+  const r=rc();if(!r)return;
+  selSS=selSS||r.lss||"1/250";selF=selF||r.lf||"8";selMM=selMM||r.lmm||"52";
+  $("rx-ss").textContent=selSS;$("rx-f").textContent=selF;$("rx-mm").textContent=selMM+"mm";
+  chips($("rs-ss"),SSV,selSS,v=>{selSS=v;syncExpo();});
+  chips($("rs-f"),FV,selF,v=>{selF=v;syncExpo();});
+  chips($("rs-mm"),MMV,selMM,v=>{selMM=v;syncExpo();});}
+
+ function paint(){
+  const r=rc();
+  $("roll-cur").textContent=r?("R"+r.n+" · "+r.stock+" · ASA "+r.asa):"SIN ROLLO";
+  $("roll-empty").style.display=r?"none":"block";
+  $("roll-shoot").style.display=r?"block":"none";
+  if(r){$("rm-count").textContent=r.shots.length;syncExpo();}
+  // lista agrupada por rollo, más nuevo arriba
+  const L=$("roll-list");L.innerHTML="";let shown=0;
+  for(let ri=rolls.length-1;ri>=0&&shown<50;ri--){const ro=rolls[ri];
+   if(!ro.shots.length)continue;
+   const g=document.createElement("div");g.className="rgroup";
+   g.textContent="ROLLO "+ro.n+" · "+ro.stock+" · ASA "+ro.asa;L.appendChild(g);
+   for(let si=ro.shots.length-1;si>=0&&shown<50;si--){const s=ro.shots[si];
+    const lv=(s.d>=DAY_MIN&&s.d<=DAY_MAX)?lvOf(s.d):null;
+    const div=document.createElement("div");div.className="ri";
+    const per=(libreta[s.d]&&libreta[s.d].n)?libreta[s.d].n:"";
+    div.innerHTML="<b>"+(si+1)+"</b><span>D"+s.d+(per?" · "+per:(lv?" "+lv.lug.split("—")[0].trim():""))+"</span>"+
+     '<span class="rx">'+s.ss+" · f/"+s.f+(s.mm?" · "+s.mm+"mm":"")+"</span>";
+    L.appendChild(div);shown++;}}
+  updRollBtn();}
+ window.rollPaint=paint;
+
+ function asaFromStock(name){
+  if(!name)return null;
+  const n=name.toLowerCase();
+  // T = tungsteno (CineStill 800T, etc) cuenta igual como ISO
+  const m=n.match(/(\d{2,4})\s*t?\b/);
+  if(m){const v=+m[1];if(ASAV.indexOf(v)>=0)return v;
+   // si el ISO impreso no está en la lista, elegí el más cercano
+   return ASAV.reduce((a,b)=>Math.abs(b-v)<Math.abs(a-v)?b:a);}
+  // marcas sin número en el nombre
+  if(/proimage|pro image/.test(n))return 100;
+  if(/superia|c200/.test(n))return 200;
+  if(/\bgold\b/.test(n))return 200;
+  if(/ektar/.test(n))return 100;
+  if(/tri-?x|hp5|portra 4|ultramax|fomapan 400/.test(n))return 400;
+  return null;}
+ function newUI(){selStock=selStock||STV[0];
+  const auto=asaFromStock(selStock);if(auto)selASA=auto;selASA=selASA||400;
+  {const ah=$("asa-auto");if(ah)ah.textContent=auto?"· auto del stock (cambiala si querés)":"";}
+  chips($("rn-stock"),STV,selStock,v=>{selStock=v;$("rn-stock-x").value="";const a=asaFromStock(v);if(a)selASA=a;newUI();});
+  (function pa(){chips($("rn-asa"),ASAV,selASA,v=>{selASA=v;$("asa-auto").textContent="· manual";pa();});})();}
+
+ let pendGeo=null;
+ function resetShootForm(){$("rs-name").value="";$("rs-fam").value="";pendGeo=null;
+  $("rs-gps").classList.remove("has");$("rs-gps-t").textContent="agregar ubicación GPS";}
+ $("rs-gps").addEventListener("click",()=>{
+  if(!navigator.geolocation){toast("Este navegador no da ubicación","err");return;}
+  $("rs-gps-t").textContent="ubicando…";
+  navigator.geolocation.getCurrentPosition(
+   p=>{pendGeo={lat:+p.coords.latitude.toFixed(5),lon:+p.coords.longitude.toFixed(5)};
+    $("rs-gps").classList.add("has");
+    $("rs-gps-t").textContent="📍 "+pendGeo.lat+", "+pendGeo.lon;
+    SFX.check();},
+   e=>{$("rs-gps-t").textContent="agregar ubicación GPS";
+    toast(e.code===1?"Permiso de ubicación denegado":"No se pudo ubicar","err");},
+   {enableHighAccuracy:true,timeout:10000,maximumAge:60000});});
+ function addPortrait(){const r=rc();if(!r)return;
+  if(window.rollRefFor&&rollRefFor(cur)){toast("D"+cur+" ya tiene retrato registrado","ok");return;}
+  const nm=$("rs-name").value.trim(),fam=$("rs-fam").value.trim();
+  libreta[cur]=Object.assign({},libreta[cur],{n:nm,fam:fam});
+  if(pendGeo)libreta[cur].geo=pendGeo;
+  r.shots.push({d:cur,ss:selSS,f:selF,mm:selMM,r:true});
+  r.lss=selSS;r.lf=selF;r.lmm=selMM;autosave();SFX.check();
+  resetShootForm();
+  toast("RETRATO D"+cur+" — R"+r.n+" · "+selSS+" · f/"+selF+" · "+selMM+"mm","ok");
+  paint();}
+
+ $("toroll").addEventListener("click",()=>{paint();if(!rc())newUI();
+  const lb=libreta[cur]||{};$("rs-name").value=lb.n||"";$("rs-fam").value=lb.fam||"";
+  pendGeo=lb.geo||null;
+  if(pendGeo){$("rs-gps").classList.add("has");$("rs-gps-t").textContent="📍 "+pendGeo.lat+", "+pendGeo.lon;}
+  else{$("rs-gps").classList.remove("has");$("rs-gps-t").textContent="agregar ubicación GPS";}
+  $("rexpo-panel").style.display="none";expoOpen=false;$("rollmodal").style.display="flex";});
+ $("roll-close").addEventListener("click",()=>$("rollmodal").style.display="none");
+ $("rollmodal").addEventListener("click",e=>{if(e.target.id==="rollmodal")$("rollmodal").style.display="none";});
+ $("rn-crear").addEventListener("click",()=>{
+  const st=($("rn-stock-x").value.trim()||selStock||"?");
+  rolls.push({n:rolls.length+1,stock:st,asa:selASA||400,shots:[],lss:"1/250",lf:"8",lmm:"52"});
+  curRoll=rolls.length-1;selSS=selF=selMM=null;autosave();SFX.coin();
+  toast("ROLLO "+rolls.length+" CARGADO — "+st,"ok");paint();});
+ $("rn-stock-x").addEventListener("input",e=>{
+  const v=e.target.value.trim();if(v){selStock=v;const a=asaFromStock(v);if(a)selASA=a;
+   chips($("rn-asa"),ASAV,selASA,x=>{selASA=x;});}});
+ $("rexpo-open").addEventListener("click",()=>{expoOpen=!expoOpen;
+  $("rexpo-panel").style.display=expoOpen?"block":"none";
+  $("rexpo-open").querySelector(".rex-hint").textContent=expoOpen?"listo ▴":"tocá para ajustar ▾";});
+  $("rs-add-star").addEventListener("click",addPortrait);
+ $("roll-nuevo").addEventListener("click",()=>{curRoll=-1;selSS=selF=selMM=null;newUI();paint();});
+ $("roll-undo").addEventListener("click",()=>{const r=rc();if(!r||!r.shots.length)return;
+  r.shots.pop();autosave();toast("cuadro borrado");paint();});
+ $("roll-csv").addEventListener("click",()=>{
+  let csv="rollo,stock,asa,cuadro,dia,fecha,lugar,ss,f,mm,persona,de_donde,lat,lon\n";
+  rolls.forEach(ro=>ro.shots.forEach((s,si)=>{
+   const lv=(s.d>=DAY_MIN&&s.d<=DAY_MAX)?lvOf(s.d):null;
+   const lb=libreta[s.d]||{};const per=lb.n||"",fam=lb.fam||"",g=lb.geo||{};
+   csv+=[ro.n,'"'+ro.stock+'"',ro.asa,si+1,s.d,lv?'"'+lv.fe+'"':"",lv?'"'+lv.lug.replace(/"/g,"'")+'"':"",
+    '"'+s.ss+'"','"f/'+s.f+'"',(s.mm||""),'"'+per.replace(/"/g,"'")+'"','"'+fam.replace(/"/g,"'")+'"',
+    (g.lat||""),(g.lon||"")].join(",")+"\n";}));
+  download("revelado-viaje2026.csv",csv,"text/csv");toast("HOJA DE REVELADO ↓","ok");});
+
+ /* — exposición embebida en el modal de caption (retrato) — */
+ window.capExpoFill=function(d){
+  const box=$("cap-expo"),cr=$("cap-roll");if(!box)return;
+  const r=rc();
+  if(!r){box.style.display="none";
+   if(cr){cr.textContent="📼 sin rollo — abrí el cuarto oscuro para registrar la toma";
+    cr.style.color="var(--dimmer)";cr.style.display="block";}return;}
+  if(window.rollRefFor&&rollRefFor(d)){box.style.display="none";return;}
+  if(cr)cr.style.color="var(--amber)";
+  selSS=selSS||r.lss||"1/250";selF=selF||r.lf||"8";selMM=selMM||r.lmm||"52";
+  $("cap-expo-roll").textContent="R"+r.n+" · cuadro "+(r.shots.length+1);
+  chips($("cap-ss"),SSV,selSS,v=>{selSS=v;capExpoFill(d);});
+  chips($("cap-f"),FV,selF,v=>{selF=v;capExpoFill(d);});
+  chips($("cap-mm"),MMV,selMM,v=>{selMM=v;capExpoFill(d);});
+  box.style.display="block";};
+ window.capExpoCommit=function(d){
+  const box=$("cap-expo"),r=rc();
+  if(!box||box.style.display==="none"||!r)return null;
+  if(window.rollRefFor&&rollRefFor(d))return null;
+  r.shots.push({d:d,ss:selSS,f:selF,mm:selMM,r:true});
+  r.lss=selSS;r.lf=selF;r.lmm=selMM;
+  toast("📼 R"+r.n+"·"+r.shots.length+" — "+selSS+" · f/"+selF+" · "+selMM+"mm · ★","ok");
+  updRollBtn();return true;};
+ updRollBtn();
+})();
+
+/* ═══════════ GUÍA DEL DÍA · FRASES · REGLA · RACHA · HOY · MUNDOS ═══════════ */
+const GUIDE={"0": ["Pesá la mochila: si pasa de 10 kg, sacá algo — 89 días la van a sentir tus hombros, no tu entusiasmo.", "Foto 0 de la serie: tu cuarto en La Paz tal como queda — y cargá el ROLLO 1 en el 📼 del juego: stock, ASA, y a contar cuadros desde el primer disparo.", "Mapas offline de São Paulo y Madrid + copias de pasaportes/ESTA en tu mail. Hoy, no en la fila del check-in."], "1": ["Llegás ~13h: Red Monkey (Rua Parintins 41, checkout desde las 5:00 — hecho para tu vuelo). Almuerzo en el Parque da Água Branca a 12 min a pie: mercado, sombra y gallinas sueltas en plena ciudad. Siesta corta.", "El Memorial da América Latina está a la vuelta de tu hostel: el hormigón de Niemeyer con luz de tarde es un rollo entero — la mano herida es LA foto.", "Minhocão al atardecer: entrá por la punta oeste (Marechal Deodoro, ~20 min a pie) — 3,4 km elevados entre fachadas pixadas. Cena ligera y a dormir: Uber a GRU ~5:30 (40 min sin tráfico) para el CA898 de 09:25."], "2": ["En el vuelo escribí la caption del retrato de ayer con la memoria fresca — 12 horas dan para eso y dos películas.", "Barajas→Atocha: metro corre hasta ~01:30; si no, taxi de tarifa plana del aeropuerto (confirmá el precio en el cartel).", "Alarma 05:15 y ropa de mañana lista ANTES de dormirte. El Ouigo de las 06:22 no negocia."], "3": ["Consigna en Sants y menú del día por el barrio de Sants con tus amigos: 5h40 dan para un abrazo largo, no para turismo.", "En el FlixBus sentate a la derecha: los Pirineos se despiden por esa ventana.", "Llegás 21:25 a Toulouse: dejá la mochila y salí 20 minutos al Capitole iluminado. Mañana es día grande."], "4": ["Basílica Saint-Sernin de mañana: el románico más grande de Europa, a metros de tu hostel.", "Orillas del Garona al atardecer, la «ville rose» se enciende — Portra 400 puro antes del show.", "En el Poney Club: hidratate entre sets. Moby ambient + jet lag acumulado es combo traicionero."], "5": ["Museo Toulouse-Lautrec en Albi: el póster nació ahí — peregrinación gráfica obligatoria para vos.", "Sainte-Cécile por dentro: la catedral de ladrillo más grande del mundo y el Juicio Final flamenco.", "Mirador sobre el Tarn desde el Pont Vieux. De vuelta en Toulouse: cassoulet, te lo ganaste."], "6": ["Carcassonne a las 9:00 en punto: la ciudadela sin cruceristas dura ~2 horas. Después es Disney medieval.", "De vuelta: mercado Victor Hugo antes de las 14h — primer piso, mesas de mercado, saucisse de Toulouse.", "Tarde de caza: los invaders de Toulouse viven entre Capitole y Saint-Sernin — y si el score pide más, Montauban (tren 25 min) también está invadida."], "7": ["Tren con calma y llegada al vermut: Cova Fumada (Barceloneta) — bombas + vermut es el rito de entrada.", "Gòtic de noche sin plan: reconocé el territorio de la misión BCN_12 con tu hermano.", "Ojo al billete del tren: el directo se discontinuó, y si tu conexión para en Perpignan 40+ minutos, hay invaders en la escala. Elegí el cambio largo a propósito."], "8": ["Bunkers del Carmel al atardecer: la mejor vista gratis de la ciudad, cerveza en mano.", "Armá con tu hermano el mapa de caza BCN_12: invader-spotter + FlashInvaders, invasión 2001-02, puede que ya no exista — documentar el hueco también es el juego.", "Chequeá el fixture del Barça de estos días: si hay partido en casa, entradas YA."], "9": ["Mañana de playa ANTES de las 11: la Barceloneta a las 9 AM es de los vecinos, después es de todos.", "Sant Antoni: el mercado renovado + vermuterías de barrio sin turistas.", "MACBA al atardecer: los skaters son el espectáculo gratuito mejor curado de la ciudad."], "10": ["Montjuïc en teleférico + Fundació Miró: la colina entera es un día perfecto.", "Font Màgica si funciona (chequeá horarios de show) — kitsch glorioso.", "Poble-sec para cenar: pintxos en Blai a €1-2. La calle entera es una barra."], "11": ["Festa Major de Sants (si cae esta semana — confirmá programa): calles decoradas por vecinos compitiendo. Único.", "El Born: Santa Maria del Mar por dentro (la catedral del pueblo) + callejeo.", "Raval profundo con la cámara: street art vivo, persianas pintadas y la Barcelona sin postal — pide 35mm y zone focus a 3 metros. (De invaders acá ya no te queda nada: solo BCN_12.)"], "12": ["Día pre-boda: recados, traje planchado, zapatos cómodos probados. Cero planes grandes.", "Siesta real. La boda de mañana es maratón, no sprint.", "Pensá 3 líneas por si te piden decir algo. Improvisar sale mal en dos idiomas."], "13": ["BODA DE FELICITAS: agua entre copas, protector solar si es de día, y bailá todo.", "Llevá UNA cámara con UN rollo: el fotógrafo oficial trabaja, vos vivís — pero 36 cuadros de amigos valen oro en 20 años.", "Anotá en la libreta la mejor frase escuchada en la fiesta. Las bodas producen literatura."], "14": ["Resaca oficial: playa + chapuzón + horchata. Nada más en la agenda.", "Almuerzo largo con los que quedaron de la boda: la sobremesa es el evento.", "Si el cuerpo revive a la tarde: paseo marítimo hasta el Fòrum en bici."], "15": ["Día de mantenimiento: lavadora completa, mochila reorganizada, inventario de rollos.", "Editá y respaldá las fotos de Bolivia/SP/boda: disco + nube, dos copias.", "Gràcia de tarde: plazas encadenadas (Sol, Vila de Gràcia) — el barrio que vive en sus plazas."], "16": ["Sagrada Família al alba por FUERA (la luz del este en la fachada del Nacimiento) — gratis y sin colas.", "Hospital de Sant Pau modernista: la obra maestra que nadie visita.", "Horchata + fartons en la Sagrada zona antes del calor."], "17": ["Tibidabo o Park Güell zona gratis: elegí UNA colina, no las dos.", "Librería/papelería: cuaderno de repuesto para la libreta de retratos si va llenándose.", "Cena de despedida con tu hermano: cerrá la misión BCN_12 con veredicto oficial (flasheado o hueco documentado)."], "18": ["Último día España: compra estratégica — jamón envasado al vacío sobrevive hasta Maryland.", "Confirmá asiento y terminal del vuelo de mañana a París + hostel con check-in tardío avisado.", "Vermut final con quien quede: el próximo es en octubre (D65) — dejá algo pendiente a propósito."], "19": ["Llegada París: dejá todo y andá al Sena al atardecer — Pont Neuf o Pont des Arts, reconexión inmediata.", "Primer flash del score parisino nuevo: hay 1.500+ esperando, cualquier esquina del Marais arranca.", "Baguette tradition de panadería de barrio (la cola de locals delata la buena). Test de calidad nacional."], "20": ["SÁBADO = Nation Photo: stock del tramo + 3 rollos de reserva. Cierran domingo, no lo patees.", "Belleville: rue Dénoyez + parc de Belleville — street art vivo y la vista que los turistas no conocen.", "Mercado de Belleville de mañana (mar-vie-sáb): el París popular, magrebí y chino en 500 metros."], "21": ["Versalles en day trip DOMINGO temprano (los jardines a las 9): el palacio está invadido — caza + barroco.", "Fuentes musicales si es temporada (chequeá Grandes Eaux).", "De vuelta: L'As du Fallafel en el Marais (domingo el barrio judío está abierto y vivo)."], "22": ["Distrito 13: los murales GIGANTES (Boulevard Vincent Auriol) — el museo a cielo abierto más nuevo de París.", "Butte-aux-Cailles: pueblito dentro de la ciudad, street art + bares baratos.", "Ojo lunes: muchas queserías/museos cierran. Día perfecto para caminar y flashear, no para interiores."], "23": ["Paris Design Week si está activa: expos gratis en el Marais/Bastille — chequeá el programa.", "Canal Saint-Martin: picnic de quesos comprados en Quatrehomme o Barthélémy (hoy sí abren).", "Zona Pompidou/Les Halles: densidad máxima de invaders por metro cuadrado. Última noche: Montmartre iluminado."], "24": ["TGV + bus y llegás a Honfleur: el Vieux Bassin al atardecer ES la foto de Boudin — puntual con la luz.", "Moules-frites + sidra fermière de cena en el puerto.", "Sainte-Catherine: la iglesia de madera más grande de Francia, construida por carpinteros navales."], "25": ["Étretat temprano vía Le Havre: la Falaise d'Aval (el arco) con marea baja se camina por abajo — chequeá horario de mareas.", "Picnic de quesos AOP: Pont-l'Évêque + Livarot + Camembert de raw milk. Los tres, sí.", "De vuelta: greniers à sel y callejones de Honfleur sin la multitud del día."], "26": ["MONT SAINT-MICHEL: cruzá la pasarela a pie 1h antes del atardecer — la silueta contra el cielo es tu foto 2.", "Dormís en La Caserne: el Mont a las 7 AM es TUYO, los buses llegan 10:30. Abadía apenas abre.", "Revisá la tabla de mareas: si hay marea grande, el mar rodea el Mont y es otro planeta."], "27": ["SÁBADO = mercado de Saint-Malo: llegás justo — quesos, ostras, mantequilla Bordier artesanal.", "Vuelta completa a las murallas con marea alta: las olas contra la piedra son espectáculo.", "Kouign-amann de panadería intramuros: mantequilla, azúcar y culpa. Vale cada gramo."], "28": ["Cancale en bus: docena de ostras a €8 en el muelle, de pie, mirando el Mont a lo lejos. Ritual bretón puro.", "Tramo del sentier des douaniers (GR34) si el día acompaña: acantilados esmeralda.", "Tarde en Saint-Malo intramuros: librerías corsarias + crêperie de cena."], "29": ["Parada táctica en Rennes: 2h de caza (invadida) — consigna en la estación, circuito centro histórico.", "Bordeaux al llegar: miroir d'eau al atardecer con la Place de la Bourse reflejada.", "Es VENDIMIA: bar à vin (rue Notre Dame en Chartrons) + canelés de Baillardran. Una noche, bien usada."], "30": ["Tren a la Francia profunda: Sarlat al anochecer con las lámparas de gas encendidas — medieval de verdad.", "Cena de región: foie gras + cabécou + pommes sarladaises. Acá nació todo eso.", "Reservá la canoa de pasado mañana y confirmá el plan del mercado de mañana temprano."], "31": ["MIÉRCOLES = mercado de Sarlat desde las 8:30: manos y nueces, tu foto 3. De los mejores mercados de Francia.", "Canoa La Roque-Gageac→Beynac (€25): el río ES el transporte — castillos desde el agua.", "Atardecer en el castillo de Beynac: el Périgord entero a tus pies."], "32": ["Castelnaud de mañana: museo de guerra medieval (trebuchets reales) — el castillo rival de Beynac.", "Domme: bastida en lo alto con la mejor panorámica del valle del Dordoña.", "Vino de nuez + nueces frescas para el camino: mañana hay 5 horas de tren."], "33": ["Llegada Montpellier: el Écusson (casco medieval) es un laberinto para perderse sin mapa.", "Place de la Canourgue al atardecer: la plaza más linda y nadie la conoce.", "Tielle sétoise de cena: empanada de pulpo picante, el snack oficial del Languedoc."], "34": ["JOURNÉES DU PATRIMOINE: monumentos cerrados todo el año hoy abren gratis — Opéra Comédie, Arc de Triomphe, hôtels particuliers. Elegí 3.", "Las 2 oleadas de invaders de Montpellier: caza entre patrimonio y patrimonio.", "Playa Palavas en tranvía (línea 3): Mediterráneo a 40 minutos de tranvía. Atardecer y volvés."], "35": ["Patrimoine día 2 en NÎMES: la Arena romana con acceso especial — la Roma francesa a puertas abiertas.", "Maison Carrée + Jardins de la Fontaine + Tour Magne: el circuito romano completo a pie.", "Brandade de morue de almuerzo + croquant Villaret (la panadería lleva 250 años en la misma esquina)."], "36": ["Palais des Papes con calma: el edificio gótico más grande de Europa — audioguía histopad incluida.", "Rocher des Doms al atardecer: el Ródano, el puente de la canción y el Mont Ventoux al fondo.", "Ojo: Les Halles cierra lunes — el mercado es plan de mañana temprano. Hoy: invaders intramuros."], "37": ["Les Halles de Aviñón de MAÑANA (hoy sí abre): el mercado cubierto con muro vegetal.", "Arles en tren (20 min): anfiteatro + la luz que enloqueció a Van Gogh. Si las Rencontres siguen abiertas, peregrinación fotográfica.", "Pont du Gard en bus si el día estira: el acueducto al atardecer, sin excursiones."], "38": ["Llegada Marsella: Le Panier de tarde — graffiti, ropa colgada, caos bueno. Tu ciudad francesa.", "Navettes de Four des Navettes (horno de 1781): la galleta de azahar oficial.", "Notre-Dame de la Garde al atardecer: la Bonne Mère cuida el puerto entero a tus pies."], "39": ["Calanque de Sugiton a pie desde Luminy, TEMPRANO (confirmá si en octubre piden reserva online — en verano sí).", "Chapuzón en la calanque si el mar lo permite: octubre mediterráneo todavía perdona.", "Pizza de Chez Étienne de cena: no hay menú, no hay apuro, hay pizza perfecta."], "40": ["Día de caza mayor: ~100 invaders — circuito Vieux-Port → Cours Julien → Notre-Dame du Mont.", "Cours Julien: la capital del street art marsellés, cada semana muta.", "MuCEM + Fort Saint-Jean: la pasarela sobre el mar al atardecer, gratis la parte exterior. Panisses de L'Idéal."], "41": ["Day trip: Cassis (calanques en barco) o La Ciotat (donde nació el cine) — ambas invadidas, elegí una.", "Mercado de pescado del Vieux-Port de mañana: teatro marsellés puro, gratis.", "Vallon des Auffes al atardecer: puertito escondido bajo el puente — la postal secreta. Última noche marsellesa."], "42": ["TER costero a Antibes pegado al mar: sentate a la derecha, el Mediterráneo te acompaña todo el viaje.", "Vieil Antibes + mercado provenzal (cierra ~13h): aceitunas, socca, tapenade.", "Remparts al atardecer + Port Vauban: los yates más absurdos de Europa. Contá los helipuertos."], "43": ["Cannes de mañana (tren 10 min): mercado Forville + oleada Côte d'Azur de invaders — La Croisette es puro flash.", "Museo Picasso en Antibes de tarde: el castillo Grimaldi donde pintó en 1946, obras donadas al lugar.", "Socca + rosé de despedida en el puerto viejo. Mañana: Niza, base final francesa."], "44": ["Instalate en Niza: Promenade des Anglais al atardecer, las sillas azules son patrimonio emocional.", "Vieux Nice de noche: socca de Chez Pipo (cierra lunes) — la original, sin competencia.", "RETIRÁ/RESERVÁ el equipo de vía ferrata para el D48-49 (arnés + disipador + casco). En Tende casi no hay alquiler."], "45": ["Menton en tren (35 min): la ciudad de los limones + el cementerio del castillo con la vista más melancólica de la Côte.", "Parada en Villefranche-sur-Mer a la vuelta: la rada más linda y la rue Obscure (calle cubierta medieval).", "Pan bagnat de almuerzo: la ensalada niçoise hecha sándwich, comida de pescadores."], "46": ["Èze village en bus: pueblo-nido de águila + jardín exótico en la cima.", "Bajá a pie por el sendero Nietzsche (1h): el filósofo lo caminaba pensando — vos bajalo con cámara.", "Cours Saleya de mañana: mercado de flores y verduras (cierra lunes). Fenocchio: helado de lavanda."], "47": ["CUMPLE DE LAURIE día 1: mañana tuya — Promenade al alba, colline du Château para la vista.", "Festejo: hidratación estratégica, el rosé de la Côte es traicionero y mañana hay día 2.", "Un retrato del festejo para la serie: cumpleañera o invitado, protocolo intacto incluso de fiesta."], "48": ["Día 2 del cumple: recuperación en la playa de piedras (los locales llevan colchoneta, aprendé).", "Chequeá el PARTE DEL TIEMPO de Tende para mañana: la vía ferrata es clima-dependiente. Plan B: solo pueblo + museo.", "Equipo de ferrata verificado y mochila de montaña lista esta noche. El tren sale temprano."], "49": ["Train des Merveilles (~2h): sentate a la DERECHA — el valle de la Roya en cinemascope.", "VÍA FERRATA Voie des Hérétiques: acantilados sobre el pueblo, acceso a pie. Autorretrato en la pared = tu foto 5.", "Musée des Merveilles: los petroglifos del Monte Bego, 5.000 años de arte rupestre alpino. Cena: polenta y quesos de la Roya."], "50": ["Tende→Ventimiglia→Monterosso: cruzás a Italia por la puerta de atrás, sin desandar Niza.", "Focaccia de Liguria en la playa de Monterosso al atardecer: el mar de octubre todavía es nadable.", "Anchoas de Monterosso + vino blanco de terraza. Mañana: caminata grande, dormí bien."], "51": ["SENTIERO AZZURRO completo Monterosso→Riomaggiore (~4h36): salí 8 AM — luz + sendero semivacío. CT Card trekking €7,50.", "Parada pesto en Vernazza o Corniglia: trofie al pesto donde el pesto nació.", "Atardecer en la marina de Riomaggiore: el cierre clásico. Pies en el agua, focaccia en mano."], "52": ["Tren temprano a Pisa: TUTTOMONDO con luz de mañana (tu foto 6) — la última obra pública de Haring, 5 min de la estación.", "Piazza dei Miracoli exprés: la foto obligada y listo, el mural es el motivo real.", "Rávena antes de las 16: San Vitale + Galla Placidia (combo €12) — el artista del mosaico invadió la capital del mosaico: buscá los invaders."], "53": ["Mosaicos que falten de MAÑANA temprano (cierran ~19h pero embarcás antes): Sant'Apollinare Nuovo.", "Provisiones ferry: piadina romagnola + mortadela — la cena a bordo cuesta el doble.", "Jadrolinija 19:45: cubierta al zarpar. El Adriático de noche, luces de la costa italiana despidiéndose."], "54": ["07:00: entrada al puerto de Split desde el ferry con la cámara CARGADA — tu foto 7, amanecer dorado.", "Palacio de Diocleciano a las 7:30: pasillos romanos vacíos, luz lateral. A las 10 es otro lugar.", "Colina Marjan al atardecer: la ciudad + islas en panorámica. Cena: pašticada con ñoquis."], "55": ["Trogir en bus (30 min): ciudad-isla UNESCO, la «Dubrovnik» sin desvío ni multitudes.", "Mercado de pescado de Split de mañana ANTES del bus: teatro dálmata.", "Sardinas a la parrilla en konoba de barrio: pedí lo que comen los del puerto."], "56": ["Día flex: Krka (cascadas) o Hvar (ferry) si hay energía — o fjaka oficial: el arte dálmata de no hacer nada, con café de 2 horas.", "Playa Bačvice + picigin (el juego local de pelota en el agua): mirá o sumate.", "IMPORTANTE: confirmá en la estación los horarios reales del bus a Grude de mañana — frecuencias bajas, el señor de la ventanilla sabe más que Google."], "57": ["GRUDE RUN: 3 invaders en Grude (los únicos de Bosnia rural) + cascadas de KRAVICE (~30 min): el Niágara balcánico sin vallas.", "Cruce de frontera en bus: pasaporte a mano, paciencia de contador en abril.", "Mostar de noche: el Stari Most iluminado + burek (acá es SOLO de carne — pedirlo con queso es herejía diplomática)."], "58": ["Madrugá: BLAGAJ — la tekke derviche en el manantial del Buna, antes de los tours (30 min de Mostar).", "Počitelj si el horario ayuda: pueblo-fortaleza otomano sobre el Neretva, casi vacío siempre.", "Bus a Sarajevo (2h30): Baščaršija de noche + ćevapi en Željo — el debate Željo 1 vs Željo 2 divide familias."], "59": ["Túnel de la Esperanza: el túnel bajo el aeropuerto que mantuvo viva la ciudad 4 años. Duro y necesario.", "Museo de la Infancia en Guerra o Galerija 11/07/95: elegí uno, no los dos el mismo día. Dosificá.", "Café bosnio con ritual completo (džezva, lokum, sin apuro) en Baščaršija: el antídoto de la tarde."], "60": ["Teleférico a Trebević + PISTA DE BOBSLED del 84: abandonada, grafiteada, tragada por el bosque — LA foto del viaje (tu foto 9). La caminata por la pista es 1h de cámara.", "Doble exposición graffiti + bosque: el plan que trajiste desde La Paz.", "Miradores de la línea del sitio bajando a pie: la geografía explica la guerra mejor que los museos."], "61": ["Día de respiro programado: edición + respaldo de todo el tramo balcánico.", "Vijećnica (la biblioteca quemada y reconstruida): el interior pseudo-morisco vale la entrada.", "Mirá el piso: las «rosas de Sarajevo» (cráteres de mortero rellenos de resina roja) están por toda la ciudad. Última noche: baklava + boza."], "62": ["Bus a Belgrado (~7h): día de tránsito asumido — podcast, edición de captions, ventana.", "Llegada: Skadarlija (la calle bohemia) de noche — kafana con música en vivo, pljeskavica + kajmak.", "Rakija de bienvenida CON RESPETO: es medicina cultural, no shot de fiesta."], "63": ["Street art: Savamala (los murales grandes) + Dorćol (la escena nueva). La capital regional del graffiti.", "Kalemegdan al atardecer: la fortaleza sobre la confluencia Sava-Danubio — el atardecer serbio oficial.", "SPLAV de noche (jueves-domingo arrancan a medianoche): KC Grad o 20/44 — tu lado Kalkbrenner en una barcaza. Efectivo."], "64": ["Zemun de día: pescado en el Danubio + subida a la torre Gardoš — el pueblito austrohúngaro dentro de Belgrado.", "Museo de Yugoslavia + Casa de las Flores (tumba de Tito): la historia que explica todo el tramo que acabás de caminar.", "Última noche balcánica: cena larga, cuentas del tramo cerradas — mañana empieza el sprint final."], "65": ["Vuelo BEG→BCN (2h40): día de tránsito con premio — Barcelona una noche más.", "Vermut + pan con tomate de despedida con quien esté: la ciudad te despide dos veces este viaje.", "CONFIRMÁ la hora del Level de mañana: si sale temprano, dormí cerca de El Prat T1. No arriesgues el transatlántico."], "66": ["Llegada Boston de tarde: North End directo — cena italiana + el debate cannoli: Mike's Pastry vs Modern. Elegí bando.", "Jet lag al revés (6h): cama temprano, mañana el cuerpo rinde.", "CharlieCard del metro apenas llegues: te sirve 3 días."], "67": ["Freedom Trail completo (4 km, línea roja en el piso): la historia fundacional yanqui en una caminata.", "Harvard/Cambridge en metro: el campus + Harvard Book Store — y el MIT si te tira lo geek.", "Isabella Stewart Gardner Museum: los MARCOS VACÍOS del robo del 90 siguen colgados. El museo-misterio."], "68": ["FALL FOLIAGE en pico: Public Garden + orillas del Charles de mañana — Nueva Inglaterra en su semana exacta.", "Clam chowder + lobster roll: el combo de despedida obligatorio (Quincy Market si hay apuro, Neptune si hay presupuesto).", "Bolso listo esta noche: el bus a NYC de mañana temprano se disfruta más sin correr."], "69": ["Llegada NYC: primer slice ANTES de dejar la mochila. Es la ley.", "Lower East Side: arranca la caza de los invaders neoyorquinos — 219 instalados, no todos viven, cada flash cuenta doble.", "Central Park arranca a UNA cuadra de tu cama (W 106th): entrá por el norte — Harlem Meer y el Conservatory Garden, la parte que los turistas no pisan."], "70": ["SoHo + Nolita + Little Italy: densidad máxima de invaders — la caza dominical con la ciudad tranquila.", "Washington Square Park: el teatro humano de NYC concentrado en una plaza.", "Bagel con lox de desayuno (Russ & Daughters si la fila perdona): el desayuno oficial."], "71": ["Williamsburg + BUSHWICK: los murales de la Bushwick Collective — el epicentro del street art actual.", "Domino Park al atardecer: skyline de Manhattan desde Brooklyn, gratis.", "7 train a FLUSHING: el mejor chino de América — dumplings de canasta en food court sin inglés."], "72": ["MARTES = B&H Photo (cierra vie tarde + sábado): rollos para el tramo final + mirar vitrinas como museo.", "Ferry de Staten Island al atardecer: la Estatua + el skyline GRATIS, ida y vuelta en ~50 min desde Whitehall. El secreto peor guardado que nadie usa.", "High Line + Chelsea de tarde: galerías gratis + la vía elevada. Slice de $1.50 de cierre."], "73": ["Bus NYC→DC de mañana (4h30): llegada a lo de los primos — el descanso largo empieza.", "BLUE CRABS + Old Bay en mesa de papel con martillo: el ritual de bienvenida de Maryland.", "Sacá YA los timed passes gratis: NMAAHC y Air & Space se agotan con días de anticipación."], "74": ["FILADELFIA day trip: WE THE YOUTH (22nd & Ellsworth) — tu foto 10, el arco Haring que abriste en Pisa se cierra acá. Luz primero: el sol cae ~17:50.", "Italian Market + Reading Terminal: roast pork de DiNic's (no cheesesteak, confiá).", "Murales de Point Breeze a pie (~7 km el circuito): Philly es la capital mundial del muralismo."], "75": ["NMAAHC (con tu timed pass): el museo más potente del Mall — arrancá abajo (historia) y subí.", "National Mall a pie: Lincoln → Washington → Capitol, la postal completa de una vez.", "Ben's Chili Bowl (U Street): half-smoke histórico donde comió medio siglo de historia negra de DC."], "76": ["HALLOWEEN SUBURBANO: tallar calabaza con los primos de día — es artesanía seria acá.", "Disfraz de thrift store de última hora: $10 y dignidad intacta.", "Trick-or-treat al anochecer: documentalo en película — el suburbio gringo en su noche más antropológica."], "77": ["Cementerio de Arlington: el cambio de guardia en la Tumba del Soldado Desconocido — silencio ceremonial.", "Georgetown: el canal + las casas federales + la escalera de El Exorcista.", "DOMINGO NFL con los primos en TV: nachos, gritos y reglas que nadie te va a explicar bien. Antropología nivel 2."], "78": ["Air & Space (timed pass) o — si alguien maneja — Udvar-Hazy: el Discovery de verdad en un hangar.", "Lavadora COMPLETA: el lujo de casa de familia.", "Edición lote 1: los retratos de España y Francia, primera pasada seria."], "79": ["National Gallery (gratis): el único Leonardo de América + los Rothko + el jardín de esculturas.", "Chinatown DC + el arco de la amistad: almuerzo y caminata.", "Edición lote 2: Italia y Balcanes. Dos tramos por día y llegás."], "80": ["Library of Congress: el edificio más lindo de DC — entrada gratis, el hall principal es Beaux-Arts delirante.", "Capitol tour (gratis, reservá online) o al menos la explanada.", "Eastern Market de tarde: el mercado de barrio de Capitol Hill, crab cakes en Market Lunch."], "81": ["Hirshhorn (arte contemporáneo, gratis) + su jardín de esculturas hundido.", "Portrait Gallery + American Art (mismo edificio, abren hasta las 19: el museo para la tarde): los retratos presidenciales — mirálos como retratista, no como turista.", "Edición lote 3: EEUU + selección preliminar de las 89."], "82": ["SHENANDOAH si alguien maneja (foliage final espectacular, Skyline Drive) — plan B: Great Falls del Potomac (20 min).", "Si no hay auto: Rock Creek Park — el bosque dentro de la ciudad.", "Primera pasada de LA SELECCIÓN: las 89 en una pared/mesa. Mirálas en conjunto por primera vez."], "83": ["Day trip: ANNAPOLIS (capital náutica, Academia Naval, crab cakes de verdad) o BALTIMORE con el AVAM (American Visionary Art Museum — arte outsider, muy tu vibra). Elegí uno.", "Puerto de Annapolis al atardecer o Fell's Point en Baltimore.", "Última compra de regalos: acá es más barato y hay tiempo."], "84": ["Día de primos puro: cociná algo boliviano con ingredientes gringos (¿silpancho con lo que haya?) — intercambio cultural inverso.", "Álbum familiar: retratos de TU familia también entran a la serie — protocolo intacto, cariño extra.", "Tarde suburbana sin plan: bicicleta, mall, lo que salga. Esto también es el viaje."], "85": ["DC nocturno: Lincoln Memorial a las 21h — vacío, iluminado, el mejor momento del monumento.", "Kennedy Center: terraza del techo GRATIS con vista al Potomac (y si hay show gratuito del Millennium Stage, 18h).", "Jazz en Blues Alley si el bolsillo da — o U Street que es historia viva del jazz."], "86": ["Backup TOTAL por duplicado: discos + nube, los retratos del viaje entero. Dejá una copia física con los primos (D74 del plan original: hecho).", "Plan de revelado: qué rollos se revelan en La Paz, cuáles esperan — inventario final.", "Regalos de familia cerrados + pesá la mochila de vuelta (el límite de BoA no perdona)."], "87": ["SELECCIÓN FINAL v1: las 89 caras en orden cronológico — el proyecto existe por primera vez completo.", "Última cena de crabs con toda la familia: agradecé hospedaje con retratos impresos si hay CVS/Walgreens cerca (imprimen en 1h).", "Maleta lista esta noche. Mañana solo queda volar."], "88": ["Mañana libre: último Smithsonian exprés o desayuno largo — nada que dependa de horarios.", "DCA 14:59: llegá 2h antes, es aeropuerto chico pero TSA es TSA.", "En la escala de MIA (2h13): caption del retrato del pasajero — el penúltimo de la serie, escrita en caliente."], "89": ["06:25, El Alto: la ciudad apareciendo por la ventanilla — 88 noches después. Respirá (literal: son 4.000 msnm de nuevo).", "Api con pastel en el mercado de camino a casa: el desayuno de reentrada oficial.", "HOY NO ABRAS EL MAIL DE ALLIANT. El retrato final — el tuyo — y a dormir. El juego terminó: ganaste."]};
+const FRASES={"BR": [["Quanto custa?", "KUÁN-tu KUS-ta — ¿cuánto cuesta?"], ["Posso tirar sua foto?", "PÓ-su chi-RAR súa FÓ-tu — ¿puedo hacerte una foto?"], ["De onde vem sua família?", "dyi ÓN-dyi véin súa fa-MÍ-lia — la pregunta de la serie"], ["Obrigado / Valeu", "obri-GÁ-du / va-LÉU — gracias / gracias (informal)"], ["Uma água, por favor", "ú-ma Á-gua — un agua, por favor"], ["Tudo bem?", "tú-du BÉIN — ¿todo bien? (saludo universal)"]], "FR": [["C'est combien ?", "se kom-BIÁN — ¿cuánto es?"], ["Je peux vous prendre en photo ?", "she pe vu prandr an fo-TÓ — ¿puedo fotografiarle?"], ["D'où vient votre famille ?", "du vián votr fa-MÍY — la pregunta de la serie"], ["Merci beaucoup", "mer-SÍ bo-KÚ — muchas gracias"], ["L'addition, s'il vous plaît", "la-di-SIÓN sil vu PLE — la cuenta, por favor"], ["Une tradition, s'il vous plaît", "ün tra-di-SIÓN — la baguette buena, en la panadería"]], "IT": [["Quanto costa?", "KUÁN-to KÓS-ta — ¿cuánto cuesta?"], ["Posso farti una foto?", "PÓS-so FÁR-ti una FÓ-to — ¿puedo hacerte una foto?"], ["Da dove viene la tua famiglia?", "da DÓ-ve VIÉ-ne — la pregunta de la serie"], ["Grazie mille", "GRÁT-sie MÍL-le — mil gracias"], ["Il conto, per favore", "il KÓN-to — la cuenta, por favor"], ["Un caffè", "un ka-FÉ — espresso, de pie en la barra, ~€1,20"]], "BAL": [["Koliko košta?", "KÓ-li-ko KÓSH-ta — ¿cuánto cuesta? (sirve en HR/BA/RS)"], ["Mogu li te slikati?", "MÓ-gu li te SLÍ-ka-ti — ¿puedo fotografiarte?"], ["Odakle je tvoja porodica?", "Ó-da-kle ye TVÓ-ya PO-ró-di-tsa — la pregunta de la serie"], ["Hvala", "JVÁ-la — gracias"], ["Živjeli!", "ZHÍ-vye-li — ¡salud! (obligatorio con rakija)"], ["Račun, molim", "RÁ-chun MÓ-lim — la cuenta, por favor"]]};
+const FOTOREGLAS=["Sunny 16: sol pleno = f/16 y SS ≈ 1/ASA. Sin fotómetro, sin excusas.", "Sombra abierta: abrí 2-3 pasos desde sunny 16.", "El negativo color perdona sobreexponer, nunca subexponer: ante la duda, +1.", "Zone focus: f/8, foco a 3 m — todo entre 2 y 5 m sale nítido. Disparás sin enfocar.", "f/8 and be there: estar ahí vale más que cualquier lente.", "1/60 es tu piso a pulso con 50mm. Menos que eso, apoyate en algo.", "Esperá el hueco: el fondo limpio aparece si contás hasta tres.", "Fotografiá la salida, no la entrada: la gente se relaja al irse.", "Altura de pecho para escenas, altura de ojo para retratos.", "Contra el sol: medí la piel, no el cielo.", "HP5 se banca ASA 800 con push +1 en revelado: anotalo en el rollo.", "Un rollo, una idea: no mezcles proyectos en 36 cuadros.", "La mejor luz dura 20 minutos: llegá 30 antes.", "Ventana + persona = retrato resuelto. Buscá la ventana.", "Si dudás entre dos cuadros, sacá los dos: el rollo es más barato que el arrepentimiento.", "Llená el cuadro con la pregunta, no con la respuesta.", "Mercados: primero comprá algo, después pedí la foto.", "El permiso es parte de la foto: la mirada del que dijo que sí es otra.", "Lluvia = colores saturados + calles vacías: no guardes la cámara.", "Mediodía duro: buscá sombra o reflejos, no pelees contra el sol.", "Portra ama la sombra abierta; CineStill ama el neón.", "Enfocá al ojo más cercano. Siempre.", "Los pies cuentan la historia que la cara esconde.", "Doble expo: primero la textura, después la silueta oscura.", "Una escena buena se trabaja: 5 cuadros del mismo lugar > 5 lugares distintos.", "Revisá el fondo antes que el sujeto: los postes salen de las cabezas.", "Tren y bus: 1/500 mínimo, o abrazá el barrido y bajá a 1/15.", "La vertical es del retrato; la horizontal, del lugar.", "Cambiá de rollo ANTES del momento importante, no durante.", "El cuaderno es la otra mitad de la cámara: sin dato, la foto queda huérfana."];
+const CO2FR={BR:"BR",FR:"FR",IT:"IT",HR:"BAL",BA:"BAL",RS:"BAL"};
+(function(){
+ let frOpen=false,dgOpen=false;
+ $("dg-toggle").addEventListener("click",()=>{dgOpen=!dgOpen;
+  $("dg-body").style.display=dgOpen?"block":"none";
+  $("dg-arrow").textContent=dgOpen?"▴":"▾";
+  $("dg-toggle").setAttribute("aria-expanded",dgOpen?"true":"false");});
+ $("dg-frases").addEventListener("click",()=>{frOpen=!frOpen;
+  $("dg-fr").style.display=frOpen?"block":"none";});
+ window.updGuide=function(){
+  const g=GUIDE[cur]||[];
+  $("dg-list").innerHTML=g.map(x=>"<li>"+x+"</li>").join("");
+  $("dg-regla").innerHTML="<b>REGLA DEL DÍA · FOTO</b>"+FOTOREGLAS[cur%FOTOREGLAS.length];
+  const set=CO2FR[lvOf(cur).co];
+  $("dg-frases").style.display=set?"inline-block":"none";
+  if(set){$("dg-fr").innerHTML=FRASES[set].map(p=>"<div>«"+p[0]+"»<i>"+p[1]+"</i></div>").join("");}
+  else{$("dg-fr").style.display="none";frOpen=false;}
+  $("dayguide").style.display=g.length?"block":"none";};
+
+ /* — racha con seguros — */
+ const done=d=>!!(libreta[d]&&libreta[d].n);
+ window.calcStreak=function(){
+  let last=0;for(let d=DAY_MAX;d>=1;d--){if(done(d)){last=d;break;}}
+  if(!last)return{st:0,seg:3};
+  let st=0,gaps=0,d=last;
+  while(d>=1){
+   if(done(d)){st++;d--;}
+   else if(gaps<3&&d>1&&done(d-1)){gaps++;d--;}
+   else break;}
+  return{st:st,seg:3-gaps};};
+ window.updStreak=function(){
+  const el=$("streak");if(!el)return;
+  const s=calcStreak();
+  if(s.st<2&&s.seg===3){el.style.display="none";return;}
+  const mult=s.st>=10?"×1.5":(s.st>=5?"×1.35":(s.st>=3?"×1.2":"—"));
+  el.innerHTML="🔥 RACHA "+s.st+(mult!=="—"?" · "+mult:"")+
+   '<span class="seg">'+("🛡".repeat(s.seg))+("·".repeat(3-s.seg))+"</span>";
+  el.style.display="block";};
+
+ /* — botón flotante HOY — */
+ const pill=document.createElement("button");
+ pill.id="hoy-pill";pill.type="button";document.body.appendChild(pill);
+ pill.addEventListener("click",()=>{const td=window.todayDay();if(td!==null)go(td,true,true,"warp");});
+ window.todayDay=function(){const now=new Date();
+  if(now<t0)return null;
+  return Math.min(DAY_MAX,Math.floor((now-t0)/864e5)+1);};
+ window.updHoy=function(){
+  const td=todayDay();
+  const on=$("scr-dia")&&$("scr-dia").classList.contains("on");
+  if(td!==null&&on&&cur!==td){pill.textContent="HOY · D"+td;pill.style.display="block";}
+  else pill.style.display="none";};
+
+ /* — salto directo: mantener presionado el badge del día — */
+ const badge=$("scr-dia-n");let lpT=null;
+ if(badge){
+  const start=()=>{lpT=setTimeout(()=>{lpT=null;
+   const v=prompt("Ir a día (0–89):");
+   const n=parseInt(v,10);
+   if(!isNaN(n)&&n>=DAY_MIN&&n<=DAY_MAX)go(n,true,true,"warp");},550);};
+  const cancel=()=>{if(lpT){clearTimeout(lpT);lpT=null;}};
+  badge.addEventListener("touchstart",start,{passive:true});
+  badge.addEventListener("touchend",cancel);badge.addEventListener("touchmove",cancel,{passive:true});
+  badge.addEventListener("mousedown",start);badge.addEventListener("mouseup",cancel);badge.addEventListener("mouseleave",cancel);
+  badge.addEventListener("contextmenu",e=>e.preventDefault());}
+
+ /* — mundo completado — */
+ window.worldDone=function(w){const tl=TL[w];
+  for(let d=tl.s;d<tl.s+tl.d;d++){if(LV[d]&&LV[d].cap>0&&!cerrado[d])return false;}
+  return true;};
+ window.showWorld=function(w){
+  const old=$("worldscr");if(old)old.remove();
+  const tl=TL[w];let g=0,ret=0,dias=0;
+  for(let d=tl.s;d<tl.s+tl.d;d++){
+   (gastos[d]||[]).forEach(x=>g+=x.v||0);
+   if(libreta[d]&&libreta[d].n)ret++;
+   if(LV[d]&&LV[d].cap>0)dias++;}
+  const div=document.createElement("div");div.id="worldscr";
+  div.innerHTML='<div class="wbx"><div class="ws">MUNDO '+w+' COMPLETADO</div>'+
+   '<h2>'+WPAL[w][0]+'</h2>'+
+   '<div class="wg"><div><b>'+dias+'</b><i>DÍAS</i></div>'+
+   '<div><b>$'+Math.round(g)+'</b><i>GASTADO</i></div>'+
+   '<div><b>'+ret+'</b><i>RETRATOS</i></div></div>'+
+   '<button class="fbtn" id="ws-ok">SIGUIENTE MUNDO →</button></div>';
+  document.body.appendChild(div);
+  try{SFX.stamp();}catch(e){}
+  $("ws-ok").addEventListener("click",()=>div.remove());
+  div.addEventListener("click",e=>{if(e.target===div)div.remove();});};
+})();
+
 window.addEventListener("pagehide",()=>{try{if(_asT){clearTimeout(_asT);_asT=null;}localStorage.setItem(LSKEY,snapshot());}catch(e){}});
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden"){try{if(_asT){clearTimeout(_asT);_asT=null;}localStorage.setItem(LSKEY,snapshot());}catch(e){}}});
 if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0){
