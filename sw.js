@@ -1,8 +1,8 @@
-/* VIAJE 2026 — service worker v10.0
+/* VIAJE 2026 — service worker v1.0-final
    Estrategia: la página se sirve red-primero (para que las actualizaciones
    lleguen apenas subas una versión nueva) con caída a caché (para que el
    juego abra sin internet: ferry, avión, montaña). Los assets, caché-primero. */
-const CACHE = "viaje2026-v10-0";
+const CACHE = "viaje2026-v1-0-final";
 const CORE = ["./", "./index.html", "./icon-180.png", "./icon-512.png", "./manifest.webmanifest"];
 
 self.addEventListener("install", (e) => {
